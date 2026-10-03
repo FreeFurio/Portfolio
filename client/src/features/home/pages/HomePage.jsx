@@ -33,16 +33,19 @@ export default function HomePage() {
   const { skills, loading: skillsLoading } = useSkills();
   const [exiting, setExiting] = useState(false);
   const [done, setDone] = useState(false);
+  const mountTime = useState(() => Date.now())[0];
 
   const allLoaded = !heroLoading && !aboutLoading && !projectsLoading && !skillsLoading;
 
   useEffect(() => {
     if (!allLoaded) return;
+    const elapsed = Date.now() - mountTime;
+    const remaining = Math.max(0, 2500 - elapsed);
     const delay = setTimeout(() => {
       setExiting(true);
       const exit = setTimeout(() => setDone(true), 900);
       return () => clearTimeout(exit);
-    }, 2000);
+    }, remaining);
     return () => clearTimeout(delay);
   }, [allLoaded]);
 
