@@ -1,0 +1,164 @@
+/* ── Overlay ── */
+.pl {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+  overflow: hidden;
+}
+
+/* ── Curtains (exit only) ── */
+.pl-curtain {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background-color: var(--color-bg);
+  z-index: 1;
+  transform: translateX(0);
+  transition: none;
+}
+
+.pl-curtain--left  { left: 0; }
+.pl-curtain--right { right: 0; }
+
+.pl--exit .pl-curtain--left {
+  animation: curtainLeft 700ms cubic-bezier(0.76, 0, 0.24, 1) forwards;
+  animation-delay: 200ms;
+}
+
+.pl--exit .pl-curtain--right {
+  animation: curtainRight 700ms cubic-bezier(0.76, 0, 0.24, 1) forwards;
+  animation-delay: 200ms;
+}
+
+@keyframes curtainLeft {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+@keyframes curtainRight {
+  from { transform: translateX(0); }
+  to   { transform: translateX(100%); }
+}
+
+/* ── Stage ── */
+.pl-stage {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.pl-stage--exit {
+  animation: stageExit 300ms ease forwards;
+}
+
+@keyframes stageExit {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(1.06); }
+}
+
+/* ── Letters ── */
+.pl-name {
+  display: flex;
+  gap: 6px;
+  line-height: 1;
+}
+
+.pl-letter {
+  font-family: var(--font-mono);
+  font-size: clamp(4rem, 12vw, 8rem);
+  font-weight: 800;
+  color: var(--color-text-primary);
+  display: inline-block;
+  opacity: 0;
+  letter-spacing: -2px;
+}
+
+/* R flies in from top-left */
+.pl-letter--r {
+  animation: letterR 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 100ms;
+}
+
+/* L drops from top */
+.pl-letter--l {
+  animation: letterL 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 250ms;
+  color: var(--color-accent);
+}
+
+/* T flies in from top-right */
+.pl-letter--t {
+  animation: letterT 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 400ms;
+}
+
+@keyframes letterR {
+  from { opacity: 0; transform: translate(-60px, -40px) rotate(-8deg); }
+  to   { opacity: 1; transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes letterL {
+  from { opacity: 0; transform: translateY(-80px) scale(0.6); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes letterT {
+  from { opacity: 0; transform: translate(60px, -40px) rotate(8deg); }
+  to   { opacity: 1; transform: translate(0, 0) rotate(0deg); }
+}
+
+/* ── Accent line ── */
+.pl-line-wrap {
+  width: 100%;
+  overflow: hidden;
+  height: 2px;
+}
+
+.pl-line {
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  transform: translateX(-100%);
+  animation: lineDraw 600ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 700ms;
+  box-shadow: 0 0 12px var(--color-accent);
+}
+
+@keyframes lineDraw {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+
+/* ── Subtitle ── */
+.pl-sub {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  opacity: 0;
+  animation: subFade 500ms ease forwards;
+  animation-delay: 1000ms;
+  text-align: center;
+  padding: 0 var(--space-4);
+}
+
+@keyframes subFade {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 400px) {
+  .pl-sub {
+    letter-spacing: 0.08em;
+    font-size: 0.7rem;
+  }
+}
