@@ -1,0 +1,254 @@
+.admin-form-container {
+  max-width: 680px;
+}
+
+.admin-form-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-6);
+}
+
+.admin-form-subtitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: var(--space-6) 0 var(--space-4);
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.admin-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.admin-field label {
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.admin-field input,
+.admin-field textarea {
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-primary);
+  font-size: 0.95rem;
+  font-family: inherit;
+  resize: vertical;
+  transition: border-color var(--transition);
+}
+
+.admin-field input:focus,
+.admin-field textarea:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.admin-save {
+  padding: var(--space-2) var(--space-6);
+  background-color: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: background-color var(--transition);
+  align-self: flex-start;
+}
+
+.admin-save:hover:not(:disabled) {
+  background-color: var(--color-accent-hover);
+}
+
+.admin-save:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.admin-cancel {
+  padding: var(--space-2) var(--space-6);
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: all var(--transition);
+}
+
+.admin-cancel:hover {
+  border-color: var(--color-text-primary);
+  color: var(--color-text-primary);
+}
+
+.admin-form-actions {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.admin-success {
+  color: var(--color-success);
+  font-size: 0.875rem;
+}
+
+.admin-state {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+}
+
+.admin-project-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.admin-project-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  color: var(--color-text-primary);
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.admin-project-item-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.admin-featured-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  padding: 1px 6px;
+}
+
+.admin-feature {
+  padding: var(--space-1) var(--space-3);
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-accent);
+  font-size: 0.8rem;
+  font-family: inherit;
+  transition: all var(--transition);
+}
+
+.admin-feature:hover {
+  background-color: var(--color-accent-dim);
+  border-color: var(--color-accent);
+}
+
+.admin-project-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.admin-edit {
+  padding: var(--space-1) var(--space-3);
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+  font-family: inherit;
+  transition: all var(--transition);
+}
+
+.admin-edit:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.admin-delete {
+  padding: var(--space-1) var(--space-3);
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-danger);
+  font-size: 0.8rem;
+  font-family: inherit;
+  transition: all var(--transition);
+}
+
+.admin-delete:hover {
+  background-color: var(--color-danger);
+  color: #fff;
+  border-color: var(--color-danger);
+}
+
+.admin-skill-group {
+  padding: var(--space-4);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.admin-messages {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.admin-message {
+  padding: var(--space-4);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.admin-message-header {
+  display: flex;
+  gap: var(--space-4);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.admin-message-name {
+  font-weight: 600;
+  color: var(--color-text-primary);
+  font-size: 0.9rem;
+}
+
+.admin-message-email {
+  color: var(--color-accent);
+  font-size: 0.875rem;
+}
+
+.admin-message-date {
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+  margin-left: auto;
+}
+
+.admin-message-body {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}

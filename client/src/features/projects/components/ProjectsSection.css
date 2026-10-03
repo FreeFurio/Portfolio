@@ -1,0 +1,26 @@
+.projects-section {
+  padding: var(--section-padding) var(--container-padding);
+}
+
+.projects-container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-6);
+  align-items: stretch;
+}
+
+.projects-empty {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 600px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
