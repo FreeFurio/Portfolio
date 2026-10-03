@@ -53,7 +53,7 @@
 
   --transition: 150ms ease;
 
-  --section-padding: clamp(60px, 10vh, 100px);
+  --section-padding: clamp(40px, 8vh, 100px);
   --container-width: 1000px;
-  --container-padding: clamp(24px, 5vw, 64px);
+  --container-padding: clamp(20px, 5vw, 64px);
 }
