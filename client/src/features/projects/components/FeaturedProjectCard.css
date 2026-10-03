@@ -1,16 +1,12 @@
 .featured-card {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-8);
-  align-items: center;
-  padding: var(--space-8);
+  grid-template-columns: 1fr 380px;
   background-color: var(--color-bg-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  margin-bottom: var(--space-8);
-  transition: border-color 200ms ease, transform 200ms ease;
   overflow: hidden;
+  transition: border-color 200ms ease;
 }
 
 .featured-card::before {
@@ -25,30 +21,29 @@
 
 .featured-card:hover {
   border-color: var(--color-accent);
-  transform: translateY(-2px);
 }
 
-/* Left: text content */
 .featured-card-body {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-5);
 }
 
 .featured-card-label {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--color-accent);
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .featured-card-title {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: var(--color-text-primary);
-  transition: color 150ms ease;
   line-height: 1.2;
+  transition: color 150ms ease;
 }
 
 .featured-card:hover .featured-card-title {
@@ -56,16 +51,16 @@
 }
 
 .featured-card-description {
-  padding: var(--space-6);
+  padding: var(--space-3) var(--space-4);
   background-color: var(--color-bg-elevated);
   border-radius: var(--radius-md);
   border-left: 2px solid var(--color-accent);
 }
 
 .featured-card-description p {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--color-text-secondary);
-  line-height: 1.8;
+  line-height: 1.7;
 }
 
 .featured-card-tech {
@@ -76,7 +71,7 @@
 
 .featured-tech-pill {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--color-accent);
   background-color: var(--color-accent-dim);
   border: 1px solid rgba(100, 255, 218, 0.2);
@@ -87,6 +82,7 @@
 .featured-card-links {
   display: flex;
   gap: var(--space-4);
+  margin-top: auto;
 }
 
 .featured-card-link {
@@ -100,52 +96,35 @@
   transform: translateY(-2px);
 }
 
-/* Right: image area */
 .featured-card-image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.featured-card-image-inner {
   position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  border: 1px solid var(--color-border);
-}
-
-.featured-card-image-placeholder {
-  width: 100%;
-  height: 100%;
   background: linear-gradient(135deg, var(--color-bg-elevated) 0%, var(--color-navy-light) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
-.featured-card-image-placeholder span {
-  font-family: var(--font-mono);
-  font-size: 4rem;
-  font-weight: 800;
-  color: var(--color-accent);
-  opacity: 0.15;
-  line-height: 1;
-  user-select: none;
-}
-
-.featured-card-image-overlay {
+.featured-card-image::after {
+  content: '';
   position: absolute;
   inset: 0;
   background-color: var(--color-accent-dim);
   opacity: 0;
   transition: opacity 300ms ease;
-  z-index: 1;
 }
 
-.featured-card:hover .featured-card-image-overlay {
+.featured-card:hover .featured-card-image::after {
   opacity: 1;
+}
+
+.featured-card-image-placeholder {
+  font-family: var(--font-mono);
+  font-size: 6rem;
+  font-weight: 800;
+  color: var(--color-accent);
+  opacity: 0.08;
+  user-select: none;
 }
 
 @media (max-width: 768px) {
@@ -155,9 +134,5 @@
 
   .featured-card-image {
     display: none;
-  }
-
-  .featured-card-description {
-    padding: var(--space-4);
   }
 }

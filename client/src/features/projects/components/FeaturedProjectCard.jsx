@@ -31,12 +31,7 @@ export default function FeaturedProjectCard({ project }) {
         </div>
       </div>
       <div className="featured-card-image">
-        <div className="featured-card-image-inner">
-          <div className="featured-card-image-overlay" />
-          <div className="featured-card-image-placeholder">
-            <span>{project.title.charAt(0)}</span>
-          </div>
-        </div>
+        <div className="featured-card-image-placeholder">{project.title.charAt(0)}</div>
       </div>
     </div>
   );

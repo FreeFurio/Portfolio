@@ -1,26 +1,414 @@
 .projects-section {
-  padding: var(--section-padding) var(--container-padding);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px var(--container-padding) var(--space-8);
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
 }
 
-.projects-container {
+/* Dot grid bg */
+.projects-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(100,255,218,0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black, transparent);
+}
+
+/* ── Header — slides down from top ── */
+.projects-header {
   max-width: var(--container-width);
   margin: 0 auto;
+  width: 100%;
+  margin-bottom: var(--space-8);
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(-32px);
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1) 100ms,
+              transform 700ms cubic-bezier(0.16, 1, 0.3, 1) 100ms;
 }
 
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: var(--space-6);
-  align-items: stretch;
+.slide--active .projects-header {
+  opacity: 1;
+  transform: translateY(0);
 }
+
+.projects-header .section-number { margin-bottom: var(--space-1); }
 
 .projects-empty {
   color: var(--color-text-secondary);
   font-size: 0.95rem;
+  text-align: center;
 }
 
-@media (max-width: 600px) {
-  .projects-grid {
-    grid-template-columns: 1fr;
-  }
+/* ── Carousel — rises from below ── */
+.projects-carousel {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: visible;
+  perspective: 1200px;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1) 300ms,
+              transform 800ms cubic-bezier(0.16, 1, 0.3, 1) 300ms;
+}
+
+.slide--active .projects-carousel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.carousel-card {
+  position: absolute;
+  width: 1000px;
+  height: 380px;
+  border-radius: var(--radius-lg);
+  transition: transform 650ms cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 650ms cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 650ms ease,
+              filter 650ms ease;
+  cursor: pointer;
+}
+
+/* Folder tab */
+.carousel-folder-tab {
+  position: absolute;
+  top: -33px;
+  left: -1px;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-hover));
+  color: var(--color-bg);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 24px 8px;
+  border-radius: var(--radius-sm) 16px 0 0;
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 100%, 0 100%);
+  z-index: 5;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity 400ms ease 200ms, transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1) 200ms;
+}
+
+.carousel-card--active .carousel-folder-tab {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.carousel-card--featured .carousel-card-inner { border-top-left-radius: 0; }
+
+/* Inner wrapper */
+.carousel-card-inner {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  position: relative;
+  transition: border-color 400ms ease, box-shadow 400ms ease;
+}
+
+/* Neon border draw — 4 sides sequentially */
+.carousel-card-inner::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(90deg, var(--color-accent), transparent) top / 0% 2px no-repeat,
+    linear-gradient(180deg, var(--color-accent), transparent) right / 2px 0% no-repeat,
+    linear-gradient(270deg, var(--color-accent), transparent) bottom / 0% 2px no-repeat,
+    linear-gradient(0deg, var(--color-accent), transparent) left / 2px 0% no-repeat;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.carousel-card--active .carousel-card-inner::before {
+  animation: borderDraw 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes borderDraw {
+  0%   { background: linear-gradient(90deg, var(--color-accent), transparent) top / 0% 2px no-repeat, linear-gradient(180deg, var(--color-accent), transparent) right / 2px 0% no-repeat, linear-gradient(270deg, var(--color-accent), transparent) bottom / 0% 2px no-repeat, linear-gradient(0deg, var(--color-accent), transparent) left / 2px 0% no-repeat; }
+  25%  { background: linear-gradient(90deg, var(--color-accent), transparent) top / 100% 2px no-repeat, linear-gradient(180deg, var(--color-accent), transparent) right / 2px 0% no-repeat, linear-gradient(270deg, var(--color-accent), transparent) bottom / 0% 2px no-repeat, linear-gradient(0deg, var(--color-accent), transparent) left / 2px 0% no-repeat; }
+  50%  { background: linear-gradient(90deg, var(--color-accent), transparent) top / 100% 2px no-repeat, linear-gradient(180deg, var(--color-accent), transparent) right / 2px 100% no-repeat, linear-gradient(270deg, var(--color-accent), transparent) bottom / 0% 2px no-repeat, linear-gradient(0deg, var(--color-accent), transparent) left / 2px 0% no-repeat; }
+  75%  { background: linear-gradient(90deg, var(--color-accent), transparent) top / 100% 2px no-repeat, linear-gradient(180deg, var(--color-accent), transparent) right / 2px 100% no-repeat, linear-gradient(270deg, var(--color-accent), transparent) bottom / 100% 2px no-repeat, linear-gradient(0deg, var(--color-accent), transparent) left / 2px 0% no-repeat; }
+  100% { background: linear-gradient(90deg, var(--color-accent), transparent) top / 100% 2px no-repeat, linear-gradient(180deg, var(--color-accent), transparent) right / 2px 100% no-repeat, linear-gradient(270deg, var(--color-accent), transparent) bottom / 100% 2px no-repeat, linear-gradient(0deg, var(--color-accent), transparent) left / 2px 100% no-repeat; }
+}
+
+.carousel-card--active .carousel-card-inner {
+  border-color: rgba(100, 255, 218, 0.25);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6), 0 0 60px rgba(100, 255, 218, 0.06);
+}
+
+.carousel-card--featured .carousel-card-inner {
+  border-color: rgba(100, 255, 218, 0.25);
+  box-shadow: 0 32px 80px rgba(100, 255, 218, 0.1);
+}
+
+/* States */
+.carousel-card--active { transform: translateX(0) scale(1); opacity: 1; z-index: 3; cursor: default; }
+.carousel-card--prev   { transform: translateX(-520px) scale(0.87); opacity: 0.2; z-index: 2; filter: blur(3px) saturate(0.4) brightness(0.7); }
+.carousel-card--next   { transform: translateX(520px) scale(0.87);  opacity: 0.2; z-index: 2; filter: blur(3px) saturate(0.4) brightness(0.7); }
+.carousel-card--hidden { transform: translateX(0) scale(0.75); opacity: 0; z-index: 1; pointer-events: none; }
+
+.carousel-card--prev:hover,
+.carousel-card--next:hover {
+  opacity: 0.5;
+  filter: blur(0) saturate(0.8) brightness(0.9);
+}
+
+/* ── Image panel ── */
+.carousel-card-image {
+  background: linear-gradient(135deg, var(--color-bg-elevated) 0%, var(--color-navy-light) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Circuit grid */
+.carousel-card-image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(100,255,218,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100,255,218,0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+
+.carousel-card--active .carousel-card-image::before { opacity: 1; }
+
+/* Holographic sweep */
+.carousel-card-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(125deg, transparent 0%, rgba(100,255,218,0.07) 30%, rgba(180,100,255,0.07) 60%, transparent 100%);
+  background-size: 300% 300%;
+  animation: holoShift 5s ease-in-out infinite;
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+
+.carousel-card--active .carousel-card-image::after { opacity: 1; }
+
+@keyframes holoShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.carousel-card-image span {
+  font-family: var(--font-mono);
+  font-size: 8rem;
+  font-weight: 800;
+  color: var(--color-accent);
+  opacity: 0.07;
+  user-select: none;
+  transition: opacity 500ms ease, transform 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  z-index: 1;
+}
+
+.carousel-card--active .carousel-card-image span { opacity: 0.14; transform: scale(1.1); }
+
+/* ── Content panel — each element has own entrance ── */
+.carousel-card-content {
+  padding: var(--space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Title — slams up */
+.carousel-card-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 500ms cubic-bezier(0.16, 1, 0.3, 1) 80ms,
+              transform 500ms cubic-bezier(0.16, 1, 0.3, 1) 80ms;
+}
+
+.carousel-card--active .carousel-card-title { opacity: 1; transform: translateY(0); }
+
+/* Desc — fades in with blur */
+.carousel-card-desc {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(3px);
+  transition: opacity 500ms cubic-bezier(0.16, 1, 0.3, 1) 180ms,
+              transform 500ms cubic-bezier(0.16, 1, 0.3, 1) 180ms,
+              filter 500ms ease 180ms;
+}
+
+.carousel-card--active .carousel-card-desc { opacity: 1; transform: translateY(0); filter: blur(0); }
+
+/* Tech pills — pop in */
+.carousel-card-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: auto;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 500ms cubic-bezier(0.16, 1, 0.3, 1) 280ms,
+              transform 500ms cubic-bezier(0.16, 1, 0.3, 1) 280ms;
+}
+
+.carousel-card--active .carousel-card-tech { opacity: 1; transform: translateY(0); }
+
+.carousel-tech-pill {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-accent);
+  background-color: var(--color-accent-dim);
+  border: 1px solid rgba(100, 255, 218, 0.2);
+  border-radius: var(--radius-sm);
+  padding: 4px 12px;
+  transition: background-color 150ms ease, border-color 150ms ease,
+              transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 150ms ease;
+}
+
+.carousel-tech-pill:hover {
+  background-color: rgba(100, 255, 218, 0.15);
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(100, 255, 218, 0.15);
+}
+
+/* Links — slide up last */
+.carousel-card-links {
+  display: flex;
+  gap: var(--space-4);
+  align-items: center;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 500ms cubic-bezier(0.16, 1, 0.3, 1) 380ms,
+              transform 500ms cubic-bezier(0.16, 1, 0.3, 1) 380ms;
+}
+
+.carousel-card--active .carousel-card-links { opacity: 1; transform: translateY(0); }
+
+.carousel-link {
+  color: var(--color-text-secondary);
+  transition: color 150ms ease, transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: inline-flex;
+}
+
+.carousel-link:hover { color: var(--color-accent); transform: translateY(-3px); }
+
+/* ── Controls — fade in from bottom ── */
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 600ms ease 500ms, transform 600ms cubic-bezier(0.34, 1.56, 0.64, 1) 500ms;
+}
+
+.slide--active .carousel-controls { opacity: 1; transform: translateY(0); }
+
+.carousel-btn {
+  background: none;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--color-accent-dim);
+  transform: scale(0);
+  transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.carousel-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  transform: scale(1.15);
+  box-shadow: 0 0 24px rgba(100, 255, 218, 0.2);
+}
+
+.carousel-btn:hover::before { transform: scale(1); }
+
+.carousel-dots { display: flex; gap: var(--space-2); }
+
+.carousel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-text-secondary);
+  border: none;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: opacity 200ms ease, width 300ms cubic-bezier(0.34, 1.56, 0.64, 1),
+              background-color 200ms ease, border-radius 300ms ease;
+  padding: 0;
+}
+
+.carousel-dot--active {
+  opacity: 1;
+  width: 22px;
+  border-radius: 3px;
+  background-color: var(--color-accent);
+  box-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .projects-carousel { height: 360px; }
+  .carousel-card { width: calc(100vw - 48px); height: 320px; }
+  .carousel-card-inner { grid-template-columns: 1fr; }
+  .carousel-card-image { display: none; }
+  .carousel-card--prev { transform: translateX(-80vw) scale(0.88); }
+  .carousel-card--next { transform: translateX(80vw) scale(0.88); }
 }

@@ -7,6 +7,7 @@ import aboutRoutes from './src/features/about/about.routes.js';
 import projectsRoutes from './src/features/projects/projects.routes.js';
 import skillsRoutes from './src/features/skills/skills.routes.js';
 import contactRoutes from './src/features/contact/contact.routes.js';
+import versionRoutes from './src/features/version/version.routes.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -23,6 +24,7 @@ app.use('/api/about', aboutRoutes);
 app.use('/api/projects', projectsRoutes);
 app.use('/api/skills', skillsRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/api/version', versionRoutes);
 
 app.use(errorHandler);
 

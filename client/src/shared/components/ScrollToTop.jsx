@@ -1,23 +1,9 @@
-import { useState, useEffect } from 'react';
 import './ScrollToTop.css';
 
-export default function ScrollToTop() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setVisible(window.scrollY > 400);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
+export default function ScrollToTop({ onGoTop, visible }) {
   if (!visible) return null;
-
   return (
-    <button className="scroll-to-top" onClick={scrollToTop} aria-label="Scroll to top">
+    <button className="scroll-to-top" onClick={onGoTop} aria-label="Go to top">
       ↑
     </button>
   );

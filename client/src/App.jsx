@@ -1,8 +1,9 @@
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from './features/auth/hooks/useAuth.js';
-import Navbar from './shared/components/Navbar.jsx';
+import { useVersion } from './features/version/hooks/useVersion.js';
 
 import HomePage from './features/home/pages/HomePage.jsx';
+import HomePageV2 from './features/home/pages/HomePageV2.jsx';
 import LoginPage from './features/auth/pages/LoginPage.jsx';
 import AdminPage from './features/admin/pages/AdminPage.jsx';
 import NotFoundPage from './shared/pages/NotFoundPage.jsx';
@@ -14,26 +15,24 @@ function AdminGuard({ children }) {
 }
 
 function Layout() {
-  const { pathname } = useLocation();
-  const hideNav = pathname === '/login' || pathname === '/admin';
+  const { version, loading } = useVersion();
+  if (loading) return null;
+  const Home = version === 'v2' ? HomePageV2 : HomePage;
 
   return (
-    <>
-      {!hideNav && <Navbar />}
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route
-          path="/admin"
-          element={
-            <AdminGuard>
-              <AdminPage />
-            </AdminGuard>
-          }
-        />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route
+        path="/admin"
+        element={
+          <AdminGuard>
+            <AdminPage />
+          </AdminGuard>
+        }
+      />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   );
 }
 

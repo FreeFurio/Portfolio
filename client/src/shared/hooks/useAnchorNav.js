@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export function useAnchorNav() {
+export function useAnchorNav(scrollRef) {
   useEffect(() => {
     function handleClick(e) {
       const anchor = e.target.closest('a[href^="#"]');
@@ -13,12 +13,17 @@ export function useAnchorNav() {
       if (!target) return;
 
       e.preventDefault();
-      const offset = target.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top: offset, behavior: 'smooth' });
+      const el = scrollRef?.current;
+      if (el) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        const offset = target.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top: offset, behavior: 'smooth' });
+      }
       history.replaceState(null, '', window.location.pathname);
     }
 
     document.addEventListener('click', handleClick);
     return () => document.removeEventListener('click', handleClick);
-  }, []);
+  }, [scrollRef]);
 }

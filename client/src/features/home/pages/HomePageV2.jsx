@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
-import HeroSection from '../../hero/components/HeroSection.jsx';
-import AboutSection from '../../about/components/AboutSection.jsx';
-import ProjectsSection from '../../projects/components/ProjectsSection.jsx';
-import SkillsSection from '../../skills/components/SkillsSection.jsx';
-import ContactSection from '../../contact/components/ContactSection.jsx';
-import Footer from '../../../shared/components/Footer.jsx';
+import HeroV2 from '../v2/HeroV2.jsx';
+import AboutV2 from '../v2/AboutV2.jsx';
+import ProjectsV2 from '../v2/ProjectsV2.jsx';
+import SkillsV2 from '../v2/SkillsV2.jsx';
+import ContactV2 from '../v2/ContactV2.jsx';
+import NavbarV2 from '../v2/NavbarV2.jsx';
+import FooterV2 from '../v2/FooterV2.jsx';
 import ScrollToTop from '../../../shared/components/ScrollToTop.jsx';
 import CustomCursor from '../../../shared/components/CustomCursor.jsx';
 import PageLoader from '../../../shared/components/PageLoader.jsx';
 import ScrollProgress from '../../../shared/components/ScrollProgress.jsx';
-import Navbar from '../../../shared/components/Navbar.jsx';
 
 import { useHero } from '../../hero/hooks/useHero.js';
 import { useAbout } from '../../about/hooks/useAbout.js';
@@ -20,7 +20,7 @@ import { useSpotlight } from '../../../shared/hooks/useSpotlight.js';
 
 const SECTION_IDS = ['hero', 'about', 'projects', 'skills', 'contact'];
 
-export default function HomePage() {
+export default function HomePageV2() {
   const { hero, loading: heroLoading } = useHero();
   const { about, loading: aboutLoading } = useAbout();
   const { projects, loading: projectsLoading } = useProjects();
@@ -48,13 +48,13 @@ export default function HomePage() {
   useSpotlight();
 
   const sections = [
-    <HeroSection key="hero" hero={hero} onScrollDown={() => goTo(1)} />,
-    <AboutSection key="about" about={about} />,
-    <ProjectsSection key="projects" projects={projects || []} />,
-    <SkillsSection key="skills" skills={skills} />,
+    <HeroV2 key="hero" hero={hero} onScrollDown={() => goTo(1)} />,
+    <AboutV2 key="about" about={about} />,
+    <ProjectsV2 key="projects" projects={projects || []} />,
+    <SkillsV2 key="skills" skills={skills} />,
     <div key="contact" className="contact-slide">
-      <ContactSection />
-      <Footer onNavClick={goTo} />
+      <ContactV2 />
+      <FooterV2 onNavClick={goTo} />
     </div>,
   ];
 
@@ -65,7 +65,7 @@ export default function HomePage() {
       {!done && <PageLoader exiting={exiting} />}
       {allLoaded && (
         <>
-          <Navbar activeId={SECTION_IDS[index]} onNavClick={goTo} sectionIds={SECTION_IDS} />
+          <NavbarV2 activeId={SECTION_IDS[index]} onNavClick={goTo} sectionIds={SECTION_IDS} />
           <main className="slides-container">
             {sections.map((section, i) => {
               let state = 'hidden';

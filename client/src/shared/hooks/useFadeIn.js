@@ -14,7 +14,7 @@ export function useFadeIn() {
           observer.unobserve(el);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.12, rootMargin: '0px 0px -60px 0px' }
     );
 
     observer.observe(el);

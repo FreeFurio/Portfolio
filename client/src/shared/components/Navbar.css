@@ -33,6 +33,10 @@
   font-weight: 700;
   text-decoration: none;
   letter-spacing: -0.5px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
 
 .navbar-links {
@@ -56,6 +60,10 @@
   display: flex;
   align-items: center;
   gap: 6px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }
 
 .nav-link-number {

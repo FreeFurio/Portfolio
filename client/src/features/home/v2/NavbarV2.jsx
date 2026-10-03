@@ -1,6 +1,5 @@
-import { useState } from 'react';
-import ThemeToggle from './ThemeToggle.jsx';
-import './Navbar.css';
+import ThemeToggle from '../../../shared/components/ThemeToggle.jsx';
+import './NavbarV2.css';
 
 const NAV_LINKS = [
   { label: 'About', id: 'about', number: '01.' },
@@ -9,23 +8,23 @@ const NAV_LINKS = [
   { label: 'Contact', id: 'contact', number: '04.' },
 ];
 
-export default function Navbar({ activeId, onNavClick, sectionIds }) {
+export default function NavbarV2({ activeId, onNavClick, sectionIds }) {
   return (
-    <header className={`navbar navbar--scrolled`}>
-      <button className="navbar-brand" onClick={() => onNavClick(0)}>RLT.</button>
-      <nav className="navbar-links">
+    <header className="v2-navbar">
+      <button className="v2-navbar-brand" onClick={() => onNavClick(0)}>RLT.</button>
+      <nav className="v2-navbar-links">
         {NAV_LINKS.map(({ label, id, number }) => (
           <button
             key={id}
-            className={`nav-link ${activeId === id ? 'nav-link--active' : ''}`}
+            className={`v2-nav-link ${activeId === id ? 'v2-nav-link--active' : ''}`}
             onClick={() => onNavClick(sectionIds.indexOf(id))}
           >
-            <span className="nav-link-number">{number}</span>
+            <span className="v2-nav-link-number">{number}</span>
             {label}
           </button>
         ))}
       </nav>
-      <div className="navbar-right">
+      <div className="v2-navbar-right">
         <ThemeToggle />
       </div>
     </header>
