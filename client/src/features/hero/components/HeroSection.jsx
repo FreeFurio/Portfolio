@@ -7,8 +7,6 @@ import './HeroSection.css';
 const NAME_LETTERS = ['R','e','e','o','n',' ','L','a','n','c','e',' ','T','o','b','i','a'];
 const PHOTOS = [photoImg, heroImg];
 
-const PHOTO_POSITIONS = ['center top', 'center top'];
-
 const SECTION_IDS = ['hero', 'about', 'projects', 'skills', 'experience', 'contact'];
 
 function resolveHref(url) {
@@ -43,10 +41,11 @@ export default function HeroSection({ hero, onScrollDown, goTo }) {
       <div className="hero-grid-bg" aria-hidden="true" />
       <div className="hero-mobile-bg" aria-hidden="true">
         {PHOTOS.map((src, i) => (
-          <div
+          <img
             key={i}
+            src={src}
+            alt=""
             className={`hero-mobile-bg-layer${i === active ? ' hero-mobile-bg-layer--active' : ''}`}
-            style={{ backgroundImage: `url(${src})`, backgroundPosition: PHOTO_POSITIONS[i] }}
           />
         ))}
       </div>
