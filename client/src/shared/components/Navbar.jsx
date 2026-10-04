@@ -3,10 +3,11 @@ import ThemeToggle from './ThemeToggle.jsx';
 import './Navbar.css';
 
 const NAV_LINKS = [
-  { label: 'About',    id: 'about',    number: '01.' },
-  { label: 'Projects', id: 'projects', number: '02.' },
-  { label: 'Skills',   id: 'skills',   number: '03.' },
-  { label: 'Contact',  id: 'contact',  number: '04.' },
+  { label: 'About',      id: 'about',      number: '01.' },
+  { label: 'Projects',   id: 'projects',   number: '02.' },
+  { label: 'Skills',     id: 'skills',     number: '03.' },
+  { label: 'Experience', id: 'experience', number: '04.' },
+  { label: 'Contact',    id: 'contact',    number: '05.' },
 ];
 
 export default function Navbar({ activeId, onNavClick, sectionIds }) {

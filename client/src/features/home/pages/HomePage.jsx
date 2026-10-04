@@ -3,6 +3,7 @@ import HeroSection from '../../hero/components/HeroSection.jsx';
 import AboutSection from '../../about/components/AboutSection.jsx';
 import ProjectsSection from '../../projects/components/ProjectsSection.jsx';
 import SkillsSection from '../../skills/components/SkillsSection.jsx';
+import ExperienceSection from '../../experience/components/ExperienceSection.jsx';
 import ContactSection from '../../contact/components/ContactSection.jsx';
 import Footer from '../../../shared/components/Footer.jsx';
 import ScrollToTop from '../../../shared/components/ScrollToTop.jsx';
@@ -18,7 +19,7 @@ import { useSkills } from '../../skills/hooks/useSkills.js';
 import { useSectionNav } from '../../../shared/hooks/useSectionNav.js';
 import { useSpotlight } from '../../../shared/hooks/useSpotlight.js';
 
-const SECTION_IDS = ['hero', 'about', 'projects', 'skills', 'contact'];
+const SECTION_IDS = ['hero', 'about', 'projects', 'skills', 'experience', 'contact'];
 
 export default function HomePage() {
   const { hero, loading: heroLoading } = useHero();
@@ -52,6 +53,7 @@ export default function HomePage() {
     <AboutSection key="about" about={about} />,
     <ProjectsSection key="projects" projects={projects || []} />,
     <SkillsSection key="skills" skills={skills} />,
+    <ExperienceSection key="experience" />,
     <div key="contact" className="contact-slide">
       <ContactSection />
       <Footer onNavClick={goTo} />

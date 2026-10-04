@@ -1,6 +1,6 @@
 import './Footer.css';
 
-const NAV = ['About', 'Projects', 'Skills', 'Contact'];
+const NAV = ['About', 'Projects', 'Skills', 'Experience', 'Contact'];
 
 export default function Footer({ onNavClick }) {
   return (
