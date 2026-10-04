@@ -527,12 +527,37 @@
   .hero-photo { display: none; }
 }
 
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 100svh;
+    padding-top: 80px;
+    padding-bottom: var(--space-16);
+    align-items: flex-start;
+  }
+
+  .hero-inner {
+    padding-top: var(--space-8);
+    gap: var(--space-8);
+  }
+
+  .hero-name {
+    font-size: clamp(2rem, 10vw, 3rem);
+    letter-spacing: -1px;
+  }
+
+  .hero-title {
+    font-size: clamp(1.1rem, 5vw, 1.6rem);
+  }
+
+  .hero-scroll-indicator { display: none; }
+}
+
 @media (max-width: 600px) {
   .hero-cta { flex-direction: column; }
   .btn { text-align: center; justify-content: center; width: 100%; }
 }
 
 @media (max-width: 480px) {
-  .hero-name { letter-spacing: -1px; }
+  .hero-name { letter-spacing: -0.5px; }
   .hero-tagline { font-size: 0.95rem; }
 }

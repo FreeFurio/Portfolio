@@ -405,8 +405,23 @@
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .projects-carousel { height: 360px; }
-  .carousel-card { width: calc(100vw - 48px); height: 320px; }
+  .projects-section {
+    height: auto;
+    min-height: 100svh;
+    padding: 80px var(--container-padding) var(--space-12);
+    overflow: visible;
+  }
+
+  .projects-carousel {
+    height: 360px;
+    overflow: hidden;
+  }
+
+  .carousel-card {
+    width: calc(100vw - 48px);
+    height: 320px;
+  }
+
   .carousel-card-inner { grid-template-columns: 1fr; }
   .carousel-card-image { display: none; }
   .carousel-card--prev { transform: translateX(-80vw) scale(0.88); }

@@ -154,6 +154,13 @@
   color: #e0fff8;
 }
 
+@media (max-width: 768px) {
+  .skills-section {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-12);
+  }
+}
+
 @media (max-width: 600px) {
   .skills-groups { grid-template-columns: 1fr; }
 }

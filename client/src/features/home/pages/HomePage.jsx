@@ -19,6 +19,7 @@ import { useSectionNav } from '../../../shared/hooks/useSectionNav.js';
 import { useSpotlight } from '../../../shared/hooks/useSpotlight.js';
 
 const SECTION_IDS = ['hero', 'about', 'projects', 'skills', 'contact'];
+const IS_MOBILE = () => window.innerWidth <= 768;
 
 export default function HomePage() {
   const { hero, loading: heroLoading } = useHero();
@@ -27,11 +28,18 @@ export default function HomePage() {
   const { skills, loading: skillsLoading } = useSkills();
   const [exiting, setExiting] = useState(false);
   const [done, setDone] = useState(false);
+  const [isMobile, setIsMobile] = useState(IS_MOBILE());
   const mountTime = useState(() => Date.now())[0];
 
   const allLoaded = !heroLoading && !aboutLoading && !projectsLoading && !skillsLoading;
 
   const { index, direction, goTo } = useSectionNav(SECTION_IDS.length);
+
+  useEffect(() => {
+    const handler = () => setIsMobile(IS_MOBILE());
+    window.addEventListener('resize', handler);
+    return () => window.removeEventListener('resize', handler);
+  }, []);
 
   useEffect(() => {
     if (!allLoaded) return;
@@ -66,32 +74,44 @@ export default function HomePage() {
       {allLoaded && (
         <>
           <Navbar activeId={SECTION_IDS[index]} onNavClick={goTo} sectionIds={SECTION_IDS} />
-          <main className="slides-container">
-            {sections.map((section, i) => {
-              let state = 'hidden';
-              if (i === index) state = 'active';
-              return (
-                <div
-                  key={i}
-                  className={`slide slide--${state} slide--${direction}`}
-                  aria-hidden={i !== index}
-                >
+          {isMobile ? (
+            <main>
+              {sections.map((section, i) => (
+                <div key={i} className="slide slide--active">
                   {section}
                 </div>
-              );
-            })}
-          </main>
+              ))}
+            </main>
+          ) : (
+            <main className="slides-container">
+              {sections.map((section, i) => {
+                let state = 'hidden';
+                if (i === index) state = 'active';
+                return (
+                  <div
+                    key={i}
+                    className={`slide slide--${state} slide--${direction}`}
+                    aria-hidden={i !== index}
+                  >
+                    {section}
+                  </div>
+                );
+              })}
+            </main>
+          )}
           <ScrollToTop onGoTop={() => goTo(0)} visible={index > 0} />
-          <nav className="slide-dots" aria-label="Section navigation">
-            {SECTION_IDS.map((id, i) => (
-              <button
-                key={id}
-                className={`slide-dot ${i === index ? 'slide-dot--active' : ''}`}
-                onClick={() => goTo(i)}
-                aria-label={id}
-              />
-            ))}
-          </nav>
+          {!isMobile && (
+            <nav className="slide-dots" aria-label="Section navigation">
+              {SECTION_IDS.map((id, i) => (
+                <button
+                  key={id}
+                  className={`slide-dot ${i === index ? 'slide-dot--active' : ''}`}
+                  onClick={() => goTo(i)}
+                  aria-label={id}
+                />
+              ))}
+            </nav>
+          )}
         </>
       )}
     </>

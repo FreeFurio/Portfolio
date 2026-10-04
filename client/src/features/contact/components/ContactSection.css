@@ -210,6 +210,13 @@
 .slide--active .contact-response-time { opacity: 0.6; }
 
 /* ── Responsive ── */
+@media (max-width: 768px) {
+  .contact-section {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-12);
+  }
+}
+
 @media (max-width: 600px) {
   .contact-cards { grid-template-columns: 1fr; }
 }

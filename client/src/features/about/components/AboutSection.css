@@ -442,8 +442,23 @@
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .about-container { grid-template-columns: 1fr; gap: var(--space-12); }
-  .about-photo-wrapper { display: flex; justify-content: center; padding-right: 14px; padding-bottom: 14px; }
+  .about-section {
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-12);
+  }
+
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: var(--space-10);
+  }
+
+  .about-photo-wrapper {
+    display: flex;
+    justify-content: center;
+    padding-right: 14px;
+    padding-bottom: 14px;
+  }
+
   .about-stats { flex-wrap: wrap; gap: var(--space-6); }
 }
 
