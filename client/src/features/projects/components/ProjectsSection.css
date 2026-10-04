@@ -405,33 +405,39 @@
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .projects-section { padding: 20px var(--space-4) var(--space-3); }
-  .projects-header { margin-bottom: var(--space-3); }
-  .projects-carousel { height: 340px; }
-  .carousel-card { width: calc(100vw - 32px); height: 300px; }
+  .projects-section {
+    padding: 16px var(--space-4) var(--space-3);
+    height: 100vh;
+    justify-content: flex-start;
+    padding-top: 70px;
+  }
+  .projects-header { margin-bottom: var(--space-2); }
+  .projects-carousel { height: 320px; }
+  .carousel-card { width: calc(100vw - 32px); height: 280px; }
   .carousel-card-inner { grid-template-columns: 1fr; }
   .carousel-card-image { display: none; }
   .carousel-card--prev { transform: translateX(-78vw) scale(0.88); }
   .carousel-card--next { transform: translateX(78vw) scale(0.88); }
   .carousel-card-content { padding: var(--space-4); gap: var(--space-2); }
   .carousel-card-title { font-size: 1rem; }
-  .carousel-card-desc { font-size: 0.78rem; -webkit-line-clamp: 2; }
+  .carousel-card-desc { font-size: 0.8rem; -webkit-line-clamp: 2; }
   .carousel-tech-pill { font-size: 0.65rem; padding: 2px 7px; }
-  .carousel-btn { width: 34px; height: 34px; font-size: 0.8rem; }
-  .carousel-controls { margin-top: var(--space-3); gap: var(--space-4); }
+  .carousel-btn { width: 36px; height: 36px; font-size: 0.85rem; }
+  .carousel-controls { margin-top: var(--space-2); gap: var(--space-4); }
   .carousel-folder-tab { font-size: 0.6rem; padding: 4px 12px 5px; top: -26px; }
 }
 
 @media (max-width: 480px) {
-  .projects-section { padding: 16px var(--space-3) var(--space-2); }
-  .projects-carousel { height: 310px; }
-  .carousel-card { height: 275px; width: calc(100vw - 24px); }
-  .carousel-card-title { font-size: 0.9rem; }
-  .carousel-card-desc { font-size: 0.72rem; }
+  .projects-section { padding-top: 65px; }
+  .projects-carousel { height: 295px; }
+  .carousel-card { height: 260px; width: calc(100vw - 24px); }
+  .carousel-card-title { font-size: 0.92rem; }
+  .carousel-card-desc { font-size: 0.74rem; }
   .carousel-tech-pill { font-size: 0.6rem; padding: 1px 6px; }
 }
 
 @media (max-width: 360px) {
-  .projects-carousel { height: 280px; }
-  .carousel-card { height: 250px; }
+  .projects-section { padding-top: 60px; }
+  .projects-carousel { height: 270px; }
+  .carousel-card { height: 240px; }
 }

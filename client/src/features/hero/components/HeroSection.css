@@ -528,27 +528,40 @@
 }
 
 @media (max-width: 768px) {
-  .hero-section { padding: 0 var(--space-4); }
-  .hero-inner { padding-top: 65px; gap: var(--space-2); }
-  .hero-name { font-size: clamp(1.8rem, 8vw, 2.8rem); letter-spacing: -1px; margin-bottom: var(--space-1); }
-  .hero-title { font-size: clamp(1rem, 4.5vw, 1.5rem); margin-bottom: var(--space-2); }
-  .hero-greeting { font-size: 0.82rem; margin-bottom: var(--space-2); }
+  .hero-section {
+    padding: 0 var(--space-4);
+    height: 100vh;
+    overflow: hidden;
+    align-items: center;
+  }
+  .hero-inner {
+    padding-top: 60px;
+    gap: var(--space-1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero-greeting { font-size: 0.8rem; margin-bottom: var(--space-2); }
+  .hero-name { font-size: clamp(2rem, 9vw, 3rem); letter-spacing: -1px; margin-bottom: var(--space-1); }
+  .hero-title { font-size: clamp(1rem, 4.5vw, 1.4rem); margin-bottom: var(--space-2); }
   .hero-location { font-size: 0.7rem; margin-bottom: var(--space-2); }
-  .hero-tagline { font-size: 0.82rem; margin-bottom: var(--space-4); line-height: 1.55; }
-  .hero-cta { flex-direction: column; gap: var(--space-2); margin-bottom: 0; }
-  .btn { width: 100%; justify-content: center; padding: 10px 20px; font-size: 0.78rem; }
-  .hero-scroll-indicator { bottom: var(--space-3); }
+  .hero-tagline { font-size: 0.85rem; line-height: 1.6; margin-bottom: var(--space-4); max-width: 100%; }
+  .hero-cta { flex-direction: row; flex-wrap: wrap; gap: var(--space-2); margin-bottom: 0; }
+  .btn { padding: 10px 20px; font-size: 0.78rem; }
+  .hero-scroll-indicator { bottom: var(--space-4); }
 }
 
 @media (max-width: 480px) {
-  .hero-name { font-size: clamp(1.6rem, 7.5vw, 2.2rem); }
+  .hero-name { font-size: clamp(1.7rem, 8vw, 2.4rem); }
   .hero-title { font-size: clamp(0.9rem, 4vw, 1.2rem); }
-  .hero-tagline { font-size: 0.78rem; }
+  .hero-tagline { font-size: 0.8rem; }
+  .hero-cta { flex-direction: column; }
+  .btn { width: 100%; justify-content: center; }
 }
 
 @media (max-width: 360px) {
-  .hero-inner { padding-top: 60px; }
-  .hero-name { font-size: 1.5rem; }
+  .hero-inner { padding-top: 56px; }
+  .hero-name { font-size: 1.6rem; }
   .hero-title { font-size: 0.85rem; }
-  .hero-tagline { font-size: 0.72rem; }
+  .hero-tagline { font-size: 0.75rem; }
 }

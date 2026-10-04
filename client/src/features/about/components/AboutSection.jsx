@@ -59,18 +59,24 @@ export default function AboutSection({ about }) {
     return { value: num, suffix, label: s.label };
   });
 
+  const photo = (
+    <div className="about-photo">
+      {about.photoUrl ? (
+        <img src={about.photoUrl} alt="Reeon Lance Tobia" />
+      ) : (
+        <div className="about-photo-placeholder"><span>RLT</span></div>
+      )}
+    </div>
+  );
+
   return (
     <section className="about-section">
+
+      {/* ── Desktop layout ── */}
       <div className="about-container">
         <div className="about-photo-wrapper">
           <div className="about-photo-inner">
-            <div className="about-photo">
-              {about.photoUrl ? (
-                <img src={about.photoUrl} alt="Reeon Lance Tobia" />
-              ) : (
-                <div className="about-photo-placeholder"><span>RLT</span></div>
-              )}
-            </div>
+            {photo}
             <div className="about-photo-holo" aria-hidden="true" />
           </div>
           <div className="about-corner about-corner--tl" aria-hidden="true" />
@@ -104,6 +110,45 @@ export default function AboutSection({ about }) {
           </div>
         </div>
       </div>
+
+      {/* ── Mobile layout ── */}
+      <div className="about-mobile">
+        <div className="about-availability">
+          <span className="about-availability-dot" />
+          Open to Opportunities
+        </div>
+
+        <div className="section-header">
+          <p className="section-number">01. About Me</p>
+          <h2 className="section-title">Who I Am</h2>
+        </div>
+
+        <div className="about-mobile-hero">
+          <div className="about-mobile-photo">
+            {photo}
+          </div>
+          <div className="about-mobile-stats">
+            {stats.map((stat, i) => (
+              <AnimatedStat key={stat.label} {...stat} delay={i * 150} />
+            ))}
+          </div>
+        </div>
+
+        <p className="about-bio">{about.bio}</p>
+
+        <ul className="about-what-i-do">
+          {WHAT_I_DO.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+
+        <div className="about-tech-stack">
+          {TECH_STACK.map((tech) => (
+            <span key={tech} className="about-tech-pill">{tech}</span>
+          ))}
+        </div>
+      </div>
+
     </section>
   );
 }

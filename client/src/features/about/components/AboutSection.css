@@ -440,60 +440,105 @@
   letter-spacing: 0.1em;
 }
 
+/* ── Mobile layout ── */
+.about-mobile { display: none; }
+
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .about-section {
-    padding: var(--space-6) var(--space-4);
+    padding: var(--space-4) var(--space-4);
+    height: 100%;
     overflow: hidden;
-  }
-
-  /* Single column — photo on top, content below */
-  .about-container {
-    grid-template-columns: 1fr;
-    gap: var(--space-6);
+    display: flex;
     align-items: center;
   }
 
-  /* Center the photo block */
-  .about-photo-wrapper {
+  /* Hide desktop layout, show mobile layout */
+  .about-container { display: none; }
+  .about-mobile {
     display: flex;
-    justify-content: center;
-    padding: 0;
+    flex-direction: column;
+    gap: var(--space-3);
+    width: 100%;
   }
 
-  /* Hide decorative elements that bleed off-screen */
-  .about-corner { display: none; }
-  .about-photo-inner::after { display: none; }
-  .about-photo-holo { display: none; }
-
-  .about-photo-inner { width: 160px; }
-  .about-photo { width: 160px; height: 190px; }
-
-  .about-content {
+  /* Photo left + stats right */
+  .about-mobile-hero {
+    display: grid;
+    grid-template-columns: 110px 1fr;
     gap: var(--space-4);
-    align-items: flex-start;
+    align-items: center;
   }
 
-  .about-bio { font-size: 0.9rem; line-height: 1.7; }
-  .about-what-i-do li { font-size: 0.85rem; }
-  .about-tech-pill { font-size: 0.72rem; padding: 3px 10px; }
-  .about-stats { gap: var(--space-6); padding-top: var(--space-4); }
-  .about-stat-value { font-size: 1.8rem; }
-  .about-stat-label { font-size: 0.65rem; }
+  .about-mobile-photo .about-photo {
+    width: 110px;
+    height: 128px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    position: relative;
+  }
+
+  .about-mobile-photo .about-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .about-mobile-photo .about-photo-placeholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-bg-elevated) 0%, var(--color-navy-light) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about-mobile-photo .about-photo-placeholder span {
+    font-family: var(--font-mono);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-accent);
+    opacity: 0.6;
+  }
+
+  .about-mobile-stats {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .about-mobile-stats .about-stat {
+    opacity: 1;
+    transform: none;
+    border-color: var(--color-accent);
+  }
+
+  .about-mobile-stats .about-stat-value { font-size: 1.6rem; }
+  .about-mobile-stats .about-stat-label { font-size: 0.6rem; }
+
+  /* Reuse existing classes */
+  .about-mobile .about-availability { font-size: 0.68rem; padding: 3px 10px; }
+  .about-mobile .about-bio { font-size: 0.78rem; line-height: 1.55; opacity: 1; transform: none; filter: none; }
+  .about-mobile .about-what-i-do li { font-size: 0.72rem; opacity: 1; transform: none; }
+  .about-mobile .about-tech-pill { font-size: 0.62rem; padding: 2px 8px; opacity: 1; transform: none; }
+  .about-mobile .section-header { margin-bottom: 0; }
 }
 
 @media (max-width: 480px) {
-  .about-section { padding: var(--space-4) var(--space-4); }
-  .about-photo-inner { width: 140px; }
-  .about-photo { width: 140px; height: 165px; }
-  .about-bio { font-size: 0.85rem; }
-  .about-stat-value { font-size: 1.5rem; }
-  .about-stats { gap: var(--space-4); }
+  .about-section { padding: var(--space-3) var(--space-3); }
+  .about-mobile-hero { grid-template-columns: 95px 1fr; gap: var(--space-3); }
+  .about-mobile-photo .about-photo { width: 95px; height: 110px; }
+  .about-mobile-stats .about-stat-value { font-size: 1.4rem; }
+  .about-mobile .about-bio { font-size: 0.72rem; }
+  .about-mobile .about-what-i-do li { font-size: 0.68rem; }
 }
 
 @media (max-width: 360px) {
-  .about-section { padding: var(--space-3) var(--space-3); }
-  .about-photo-inner { width: 120px; }
-  .about-photo { width: 120px; height: 140px; }
-  .about-stat-value { font-size: 1.3rem; }
+  .about-section { padding: var(--space-2) var(--space-3); }
+  .about-mobile { gap: var(--space-2); }
+  .about-mobile-hero { grid-template-columns: 80px 1fr; }
+  .about-mobile-photo .about-photo { width: 80px; height: 94px; }
+  .about-mobile-stats .about-stat-value { font-size: 1.2rem; }
+  .about-mobile .about-bio { font-size: 0.68rem; }
 }
