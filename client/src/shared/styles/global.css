@@ -145,6 +145,14 @@ code, pre {
   z-index: 1;
 }
 
+/* Scrollable slide — content taller than viewport scrolls internally */
+.slide--scrollable {
+  overflow-y: auto;
+  overflow-x: hidden;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+
 /* Projects slide — section handles its own layout */
 .slide:nth-child(3) {
   justify-content: flex-start;

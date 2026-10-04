@@ -2,12 +2,32 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 
 const DEBOUNCE = 900;
 
+function isScrollable(el) {
+  return el.scrollHeight > el.clientHeight + 2;
+}
+
+function isAtScrollBoundary(el, goingDown) {
+  if (!isScrollable(el)) return true;
+  if (goingDown) return el.scrollTop + el.clientHeight >= el.scrollHeight - 4;
+  return el.scrollTop <= 4;
+}
+
+function getScrollableParent(target) {
+  let el = target;
+  while (el && el !== document.body) {
+    if (isScrollable(el)) return el;
+    el = el.parentElement;
+  }
+  return null;
+}
+
 export function useSectionNav(total) {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState('down');
   const indexRef = useRef(0);
   const lastTime = useRef(0);
   const touchStart = useRef(null);
+  const touchStartTarget = useRef(null);
 
   const go = useCallback((next) => {
     const now = Date.now();
@@ -28,8 +48,15 @@ export function useSectionNav(total) {
 
   useEffect(() => {
     function onWheel(e) {
-      if (e.deltaY > 30) goNext();
-      else if (e.deltaY < -30) goBack();
+      const goingDown = e.deltaY > 30;
+      const goingUp = e.deltaY < -30;
+      if (!goingDown && !goingUp) return;
+
+      const scrollable = getScrollableParent(e.target);
+      if (scrollable && !isAtScrollBoundary(scrollable, goingDown)) return;
+
+      if (goingDown) goNext();
+      else goBack();
     }
 
     function onKey(e) {
@@ -39,13 +66,24 @@ export function useSectionNav(total) {
 
     function onTouchStart(e) {
       touchStart.current = e.touches[0].clientY;
+      touchStartTarget.current = e.target;
     }
 
     function onTouchEnd(e) {
       if (touchStart.current === null) return;
       const delta = touchStart.current - e.changedTouches[0].clientY;
-      if (delta > 40) goNext();
-      else if (delta < -40) goBack();
+      const goingDown = delta > 40;
+      const goingUp = delta < -40;
+      if (!goingDown && !goingUp) { touchStart.current = null; return; }
+
+      const scrollable = getScrollableParent(touchStartTarget.current);
+      if (scrollable && !isAtScrollBoundary(scrollable, goingDown)) {
+        touchStart.current = null;
+        return;
+      }
+
+      if (goingDown) goNext();
+      else if (goingUp) goBack();
       touchStart.current = null;
     }
 

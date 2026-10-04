@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import photoImg from '../../../assets/Photo.jpg';
+import photoImg from '../../../assets/Photo2.jpg';
 import './AboutSection.css';
 
 const DEFAULT_STATS = [

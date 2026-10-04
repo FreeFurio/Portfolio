@@ -72,10 +72,11 @@ export default function HomePage() {
             {sections.map((section, i) => {
               let state = 'hidden';
               if (i === index) state = 'active';
+              const scrollable = i === 1 || i === 4; // about (mobile), experience
               return (
                 <div
                   key={i}
-                  className={`slide slide--${state} slide--${direction}`}
+                  className={`slide slide--${state} slide--${direction}${scrollable ? ' slide--scrollable' : ''}`}
                   aria-hidden={i !== index}
                 >
                   {section}

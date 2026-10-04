@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import heroImg from '../../../assets/Hero.jpg';
+import photoImg from '../../../assets/Photo.jpg';
 import { useTyping } from '../hooks/useTyping.js';
 import './HeroSection.css';
 
@@ -6,6 +8,7 @@ const NAME_LETTERS = ['R','e','e','o','n',' ','L','a','n','c','e',' ','T','o','b
 
 export default function HeroSection({ hero, onScrollDown }) {
   const typedTitle = useTyping();
+  const [flipped, setFlipped] = useState(false);
 
   return (
     <section className="hero-section">
@@ -62,11 +65,16 @@ export default function HeroSection({ hero, onScrollDown }) {
           </div>
         </div>
 
-        <div className="hero-photo">
-          <div className="hero-photo-inner">
-            <img src={heroImg} alt="Reeon Lance Tobia" className="hero-photo-img" />
-            <div className="hero-photo-holo" aria-hidden="true" />
-            <div className="hero-photo-scanlines" aria-hidden="true" />
+        <div className="hero-photo" onClick={() => setFlipped((f) => !f)}>
+          <div className={`hero-photo-inner${flipped ? ' hero-photo-inner--flipped' : ''}`}>
+            <div className="hero-photo-face hero-photo-face--front">
+              <img src={photoImg} alt="Reeon Lance Tobia" className="hero-photo-img" />
+              <div className="hero-photo-scanlines" aria-hidden="true" />
+            </div>
+            <div className="hero-photo-face hero-photo-face--back">
+              <img src={heroImg} alt="Reeon Lance Tobia" className="hero-photo-img" />
+              <div className="hero-photo-scanlines" aria-hidden="true" />
+            </div>
           </div>
         </div>
       </div>
