@@ -406,10 +406,9 @@
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .projects-section {
-    padding: 16px var(--space-4) var(--space-3);
     height: 100vh;
-    justify-content: flex-start;
-    padding-top: 70px;
+    justify-content: center;
+    padding: 70px var(--space-4) var(--space-4);
   }
   .projects-header { margin-bottom: var(--space-2); }
   .projects-carousel { height: 320px; }
@@ -420,7 +419,12 @@
   .carousel-card--next { transform: translateX(78vw) scale(0.88); }
   .carousel-card-content { padding: var(--space-4); gap: var(--space-2); }
   .carousel-card-title { font-size: 1rem; }
-  .carousel-card-desc { font-size: 0.8rem; -webkit-line-clamp: 2; }
+  .carousel-card-desc {
+    font-size: 0.8rem;
+    -webkit-line-clamp: unset;
+    display: block;
+    overflow: visible;
+  }
   .carousel-tech-pill { font-size: 0.65rem; padding: 2px 7px; }
   .carousel-btn { width: 36px; height: 36px; font-size: 0.85rem; }
   .carousel-controls { margin-top: var(--space-2); gap: var(--space-4); }
@@ -428,7 +432,7 @@
 }
 
 @media (max-width: 480px) {
-  .projects-section { padding-top: 65px; }
+  .projects-section { padding: 65px var(--space-3) var(--space-3); }
   .projects-carousel { height: 295px; }
   .carousel-card { height: 260px; width: calc(100vw - 24px); }
   .carousel-card-title { font-size: 0.92rem; }
