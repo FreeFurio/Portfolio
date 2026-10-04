@@ -155,12 +155,12 @@
 }
 
 @media (max-width: 768px) {
-  .skills-section {
-    padding-top: var(--space-12);
-    padding-bottom: var(--space-12);
-  }
+  .skills-section { padding: var(--space-6) var(--space-4); }
+  .skills-groups { grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
+  .skills-group-label { font-size: 0.7rem; }
+  .skill-pill { font-size: 0.7rem; padding: 2px 8px; }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 400px) {
   .skills-groups { grid-template-columns: 1fr; }
 }

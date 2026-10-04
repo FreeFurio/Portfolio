@@ -405,25 +405,17 @@
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .projects-section {
-    height: auto;
-    min-height: 100svh;
-    padding: 80px var(--container-padding) var(--space-12);
-    overflow: visible;
-  }
-
-  .projects-carousel {
-    height: 360px;
-    overflow: hidden;
-  }
-
-  .carousel-card {
-    width: calc(100vw - 48px);
-    height: 320px;
-  }
-
+  .projects-section { padding: 60px var(--space-4) var(--space-4); }
+  .projects-carousel { height: 300px; }
+  .carousel-card { width: calc(100vw - 32px); height: 260px; }
   .carousel-card-inner { grid-template-columns: 1fr; }
   .carousel-card-image { display: none; }
-  .carousel-card--prev { transform: translateX(-80vw) scale(0.88); }
-  .carousel-card--next { transform: translateX(80vw) scale(0.88); }
+  .carousel-card--prev { transform: translateX(-75vw) scale(0.88); }
+  .carousel-card--next { transform: translateX(75vw) scale(0.88); }
+  .carousel-card-content { padding: var(--space-4); gap: var(--space-2); }
+  .carousel-card-title { font-size: 1.1rem; }
+  .carousel-card-desc { font-size: 0.8rem; -webkit-line-clamp: 2; }
+  .carousel-tech-pill { font-size: 0.7rem; padding: 2px 8px; }
+  .carousel-btn { width: 36px; height: 36px; font-size: 0.85rem; }
+  .projects-header { margin-bottom: var(--space-4); }
 }

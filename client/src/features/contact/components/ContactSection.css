@@ -211,12 +211,16 @@
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .contact-section {
-    padding-top: var(--space-12);
-    padding-bottom: var(--space-12);
-  }
+  .contact-section { padding: var(--space-6) var(--space-4); }
+  .contact-intro { font-size: 0.85rem; margin-bottom: var(--space-6); }
+  .contact-cards { grid-template-columns: repeat(2, 1fr); gap: var(--space-3); }
+  .contact-card { padding: var(--space-3); gap: var(--space-3); }
+  .contact-card-icon { width: 36px; height: 36px; }
+  .contact-card-icon svg { width: 16px; height: 16px; }
+  .contact-card-label { font-size: 0.62rem; }
+  .contact-card-handle { font-size: 0.78rem; }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 400px) {
   .contact-cards { grid-template-columns: 1fr; }
 }
