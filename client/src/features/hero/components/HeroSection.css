@@ -349,8 +349,8 @@
 
 .hero-photo-inner {
   position: relative;
-  width: 280px;
-  height: 320px;
+  width: 240px;
+  height: 420px;
 }
 
 /* Depth shadow layers */
@@ -440,8 +440,8 @@
   position: absolute;
   top: 14px;
   left: 14px;
-  width: 100%;
-  height: 100%;
+  width: 240px;
+  height: 420px;
   border: 2px solid var(--color-accent);
   border-radius: var(--radius-lg);
   z-index: 0;
