@@ -9,6 +9,14 @@
   justify-content: center;
   overflow: hidden;
   pointer-events: all;
+  --color-text-primary: #ccd6f6;
+  --color-accent: #64ffda;
+}
+
+:root[data-theme='light'] .pl {
+  background: #f8fafc;
+  --color-text-primary: #0f172a;
+  --color-accent: #0ea5e9;
 }
 
 /* ── CRT scanlines ── */
@@ -19,12 +27,22 @@
     to bottom,
     transparent 0px,
     transparent 3px,
-    rgba(100, 255, 218, 0.018) 3px,
-    rgba(100, 255, 218, 0.018) 4px
+    rgba(100, 255, 218, 0.06) 3px,
+    rgba(100, 255, 218, 0.06) 4px
   );
   pointer-events: none;
   z-index: 0;
   animation: scanPulse 4s ease-in-out infinite;
+}
+
+:root[data-theme='light'] .pl-scanlines {
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(14, 165, 233, 0.1) 3px,
+    rgba(14, 165, 233, 0.1) 4px
+  );
 }
 
 @keyframes scanPulse {
@@ -128,6 +146,10 @@
   overflow: visible;
   opacity: 0;
   animation: fadeIn 200ms ease 1100ms forwards;
+}
+
+:root[data-theme='light'] .pl-bar-wrap {
+  background: rgba(14, 165, 233, 0.2);
 }
 
 .pl-bar {
