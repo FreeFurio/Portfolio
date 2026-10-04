@@ -1,4 +1,4 @@
-import heroImg from '../../../assets/hero.png';
+import heroImg from '../../../assets/Hero.jpg';
 import { useTyping } from '../hooks/useTyping.js';
 import './HeroSection.css';
 
