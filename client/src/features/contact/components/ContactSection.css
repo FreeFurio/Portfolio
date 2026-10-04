@@ -3,35 +3,6 @@
   position: relative;
 }
 
-/* Corner brackets */
-.contact-section::before,
-.contact-section::after {
-  content: '';
-  position: absolute;
-  width: 36px;
-  height: 36px;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 500ms ease 900ms, transform 500ms cubic-bezier(0.34, 1.56, 0.64, 1) 900ms;
-}
-
-.slide--active .contact-section::before,
-.slide--active .contact-section::after { opacity: 1; transform: scale(1); }
-
-.contact-section::before {
-  top: 20px; right: 20px;
-  border-top: 1px solid rgba(100,255,218,0.4);
-  border-right: 1px solid rgba(100,255,218,0.4);
-  transform: scale(0);
-}
-
-.contact-section::after {
-  bottom: 20px; left: 20px;
-  border-bottom: 1px solid rgba(100,255,218,0.4);
-  border-left: 1px solid rgba(100,255,218,0.4);
-  transform: scale(0);
-}
-
 .contact-container {
   max-width: var(--container-width);
   margin: 0 auto;

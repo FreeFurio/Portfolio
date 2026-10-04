@@ -92,11 +92,10 @@
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  padding: 6px 24px 8px;
-  border-radius: var(--radius-sm) 16px 0 0;
-  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 100%, 0 100%);
+  padding: 6px 16px 8px 8px;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
   z-index: 5;
   white-space: nowrap;
   opacity: 0;

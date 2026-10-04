@@ -32,8 +32,8 @@ export default function HomePage() {
 
   const allLoaded = !heroLoading && !aboutLoading && !projectsLoading && !skillsLoading;
 
-  const containerRef = useRef(null);
-  const { index, direction, goTo } = useSectionNav(SECTION_IDS.length, containerRef);
+  const [containerEl, setContainerEl] = useState(null);
+  const { index, direction, goTo } = useSectionNav(SECTION_IDS.length, containerEl, done);
 
   useEffect(() => {
     if (!allLoaded) return;
@@ -50,7 +50,7 @@ export default function HomePage() {
   useSpotlight();
 
   const sections = [
-    <HeroSection key="hero" hero={hero} onScrollDown={() => goTo(1)} />,
+    <HeroSection key="hero" hero={hero} onScrollDown={() => goTo(1)} goTo={goTo} />,
     <AboutSection key="about" about={about} />,
     <ProjectsSection key="projects" projects={projects || []} />,
     <SkillsSection key="skills" skills={skills} />,
@@ -69,7 +69,7 @@ export default function HomePage() {
       {allLoaded && (
         <>
           <Navbar activeId={SECTION_IDS[index]} onNavClick={goTo} sectionIds={SECTION_IDS} />
-          <main className="slides-container" ref={containerRef}>
+          <main className="slides-container" ref={setContainerEl}>
             {sections.map((section, i) => {
               let state = 'hidden';
               if (i === index) state = 'active';

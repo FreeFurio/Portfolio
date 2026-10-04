@@ -9,7 +9,21 @@ const PHOTOS = [photoImg, heroImg];
 
 const PHOTO_POSITIONS = ['center top', 'center top'];
 
-export default function HeroSection({ hero, onScrollDown }) {
+const SECTION_IDS = ['hero', 'about', 'projects', 'skills', 'experience', 'contact'];
+
+function resolveHref(url) {
+  const hash = (url || '').replace(/^.*#/, '');
+  return SECTION_IDS.indexOf(hash) !== -1 ? undefined : (url || undefined);
+}
+
+function resolveClick(url, goTo) {
+  const hash = (url || '').replace(/^.*#/, '');
+  const idx = SECTION_IDS.indexOf(hash);
+  if (idx !== -1) return (e) => { e.preventDefault(); goTo(idx); };
+  return undefined;
+}
+
+export default function HeroSection({ hero, onScrollDown, goTo }) {
   const typedTitle = useTyping();
   const [active, setActive] = useState(0);
 
@@ -65,12 +79,17 @@ export default function HeroSection({ hero, onScrollDown }) {
           <p className="hero-tagline">{hero.tagline}</p>
 
           <div className="hero-cta">
-            <a href={hero.ctaPrimaryUrl || '#projects'} className="btn btn--primary">
+            <a
+              href={resolveHref(hero.ctaPrimaryUrl || '#projects')}
+              className="btn btn--primary"
+              onClick={resolveClick(hero.ctaPrimaryUrl || '#projects', goTo)}
+            >
               <span className="btn-text">{hero.ctaPrimary}</span>
               <span className="btn-charge" aria-hidden="true" />
             </a>
             <a
-              href={hero.ctaSecondaryUrl || '#contact'}
+              href={resolveHref(hero.ctaSecondaryUrl || '#contact')}
+              onClick={resolveClick(hero.ctaSecondaryUrl || '#contact', goTo)}
               {...((hero.ctaSecondaryUrl || '').match(/\.[a-z]+$/i) ? { download: true } : {})}
               className="btn btn--ghost"
             >
@@ -78,7 +97,8 @@ export default function HeroSection({ hero, onScrollDown }) {
             </a>
             {hero.ctaTertiary && (
               <a
-                href={hero.ctaTertiaryUrl || '/Resume_RLT.pdf'}
+                href={resolveHref(hero.ctaTertiaryUrl || '/Resume_RLT.pdf')}
+                onClick={resolveClick(hero.ctaTertiaryUrl || '/Resume_RLT.pdf', goTo)}
                 {...((hero.ctaTertiaryUrl || '/Resume_RLT.pdf').match(/\.[a-z]+$/i) ? { download: true } : {})}
                 className="btn btn--ghost"
               >
