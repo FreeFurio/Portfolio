@@ -442,59 +442,58 @@
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .about-section { padding: var(--space-4) var(--space-4); }
-  .about-container {
-    grid-template-columns: 1fr 1.4fr;
-    gap: var(--space-4);
-    align-items: start;
+  .about-section {
+    padding: var(--space-6) var(--space-4);
+    overflow: hidden;
   }
-  .about-photo-inner { width: 120px; }
-  .about-photo { width: 120px; height: 140px; }
-  .about-photo-inner::after { width: 120px; height: 140px; }
-  .about-photo-holo { width: 120px; height: 140px; }
-  .about-photo-wrapper { padding-right: 8px; padding-bottom: 8px; }
-  .about-content { gap: var(--space-2); }
-  .about-availability { font-size: 0.62rem; padding: 2px 8px; }
-  .about-bio { font-size: 0.75rem; line-height: 1.5; }
-  .about-what-i-do { gap: var(--space-1); }
-  .about-what-i-do li { font-size: 0.72rem; }
-  .about-tech-stack { gap: 4px; }
-  .about-tech-pill { font-size: 0.62rem; padding: 1px 6px; }
-  .about-stats { gap: var(--space-4); padding-top: var(--space-3); }
-  .about-stat-value { font-size: 1.4rem; }
-  .about-stat-label { font-size: 0.6rem; }
-}
 
-@media (max-width: 480px) {
-  .about-section { padding: var(--space-3) var(--space-3); }
+  /* Single column — photo on top, content below */
   .about-container {
     grid-template-columns: 1fr;
-    gap: var(--space-4);
+    gap: var(--space-6);
     align-items: center;
   }
+
+  /* Center the photo block */
   .about-photo-wrapper {
     display: flex;
     justify-content: center;
-    padding-right: 0;
-    padding-bottom: 0;
+    padding: 0;
   }
+
+  /* Hide decorative elements that bleed off-screen */
+  .about-corner { display: none; }
+  .about-photo-inner::after { display: none; }
+  .about-photo-holo { display: none; }
+
+  .about-photo-inner { width: 160px; }
+  .about-photo { width: 160px; height: 190px; }
+
+  .about-content {
+    gap: var(--space-4);
+    align-items: flex-start;
+  }
+
+  .about-bio { font-size: 0.9rem; line-height: 1.7; }
+  .about-what-i-do li { font-size: 0.85rem; }
+  .about-tech-pill { font-size: 0.72rem; padding: 3px 10px; }
+  .about-stats { gap: var(--space-6); padding-top: var(--space-4); }
+  .about-stat-value { font-size: 1.8rem; }
+  .about-stat-label { font-size: 0.65rem; }
+}
+
+@media (max-width: 480px) {
+  .about-section { padding: var(--space-4) var(--space-4); }
   .about-photo-inner { width: 140px; }
   .about-photo { width: 140px; height: 165px; }
-  .about-photo-inner::after { width: 140px; height: 165px; }
-  .about-photo-holo { width: 140px; height: 165px; }
-  .about-bio { font-size: 0.82rem; line-height: 1.6; }
-  .about-what-i-do li { font-size: 0.78rem; }
-  .about-tech-pill { font-size: 0.65rem; padding: 2px 8px; }
-  .about-stat-value { font-size: 1.4rem; }
-  .about-stats { gap: var(--space-6); }
+  .about-bio { font-size: 0.85rem; }
+  .about-stat-value { font-size: 1.5rem; }
+  .about-stats { gap: var(--space-4); }
 }
 
 @media (max-width: 360px) {
   .about-section { padding: var(--space-3) var(--space-3); }
-  .about-container { grid-template-columns: 1fr; gap: var(--space-3); }
-  .about-photo-wrapper { display: flex; justify-content: center; }
   .about-photo-inner { width: 120px; }
   .about-photo { width: 120px; height: 140px; }
-  .about-photo-inner::after { width: 120px; height: 140px; }
-  .about-photo-holo { width: 120px; height: 140px; }
+  .about-stat-value { font-size: 1.3rem; }
 }
