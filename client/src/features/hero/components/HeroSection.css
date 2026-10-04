@@ -543,7 +543,7 @@
 @media (max-width: 768px) {
   .hero-section {
     padding: 0 var(--space-4);
-    height: 100vh;
+    height: 100dvh;
     overflow: hidden;
     align-items: center;
     max-width: 100%;
