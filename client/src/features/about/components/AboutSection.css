@@ -442,42 +442,45 @@
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .about-section { padding: var(--space-8) var(--space-6); }
-  .about-container { grid-template-columns: 1fr; gap: var(--space-6); }
-  .about-photo-wrapper { display: flex; justify-content: center; padding-right: 12px; padding-bottom: 12px; }
-  .about-photo-inner { width: 200px; }
-  .about-photo { width: 200px; height: 230px; }
-  .about-photo-inner::after { width: 200px; height: 230px; }
-  .about-photo-holo { width: 200px; height: 230px; }
-  .about-stats { flex-wrap: wrap; gap: var(--space-4); }
-  .about-stat-value { font-size: 2rem; }
+  .about-section { padding: var(--space-4) var(--space-4); }
+  .about-container {
+    grid-template-columns: 1fr 1.4fr;
+    gap: var(--space-4);
+    align-items: start;
+  }
+  .about-photo-inner { width: 120px; }
+  .about-photo { width: 120px; height: 140px; }
+  .about-photo-inner::after { width: 120px; height: 140px; }
+  .about-photo-holo { width: 120px; height: 140px; }
+  .about-photo-wrapper { padding-right: 8px; padding-bottom: 8px; }
+  .about-content { gap: var(--space-2); }
+  .about-availability { font-size: 0.62rem; padding: 2px 8px; }
+  .about-bio { font-size: 0.75rem; line-height: 1.5; }
+  .about-what-i-do { gap: var(--space-1); }
+  .about-what-i-do li { font-size: 0.72rem; }
+  .about-tech-stack { gap: 4px; }
+  .about-tech-pill { font-size: 0.62rem; padding: 1px 6px; }
+  .about-stats { gap: var(--space-4); padding-top: var(--space-3); }
+  .about-stat-value { font-size: 1.4rem; }
+  .about-stat-label { font-size: 0.6rem; }
 }
 
 @media (max-width: 480px) {
-  .about-section { padding: var(--space-6) var(--space-4); }
-  .about-photo-inner { width: 160px; }
-  .about-photo { width: 160px; height: 185px; }
-  .about-photo-inner::after { width: 160px; height: 185px; }
-  .about-photo-holo { width: 160px; height: 185px; }
-  .about-bio { font-size: 0.83rem; line-height: 1.65; }
-  .about-what-i-do li { font-size: 0.78rem; }
-  .about-tech-pill { font-size: 0.68rem; padding: 2px 8px; }
-  .about-stat-value { font-size: 1.7rem; }
-  .about-stat-label { font-size: 0.65rem; }
-  .about-availability { font-size: 0.68rem; padding: 3px 10px; }
-  .about-content { gap: var(--space-3); }
-}
-
-@media (max-width: 412px) {
-  .about-photo-inner { width: 140px; }
-  .about-photo { width: 140px; height: 165px; }
-  .about-photo-inner::after { width: 140px; height: 165px; }
-  .about-photo-holo { width: 140px; height: 165px; }
-  .about-stat-value { font-size: 1.5rem; }
+  .about-container { grid-template-columns: 1fr 1.6fr; gap: var(--space-3); }
+  .about-photo-inner { width: 100px; }
+  .about-photo { width: 100px; height: 118px; }
+  .about-photo-inner::after { width: 100px; height: 118px; }
+  .about-photo-holo { width: 100px; height: 118px; }
+  .about-bio { font-size: 0.7rem; }
+  .about-what-i-do li { font-size: 0.68rem; }
+  .about-tech-pill { font-size: 0.58rem; padding: 1px 5px; }
+  .about-stat-value { font-size: 1.2rem; }
 }
 
 @media (max-width: 360px) {
-  .about-section { padding: var(--space-4) var(--space-3); }
-  .about-bio { font-size: 0.78rem; }
-  .about-what-i-do li { font-size: 0.72rem; }
+  .about-section { padding: var(--space-3) var(--space-3); }
+  .about-container { grid-template-columns: 1fr; gap: var(--space-3); }
+  .about-photo-wrapper { display: flex; justify-content: center; }
+  .about-photo-inner { width: 100px; }
+  .about-photo { width: 100px; height: 118px; }
 }
