@@ -218,12 +218,9 @@
 }
 
 @media (max-width: 480px) {
-  .pl-corner--tl, .pl-corner--tr, .pl-corner--bl, .pl-corner--br {
-    width: 24px;
-    height: 24px;
-    top: 20px;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-  }
+  .pl-corner { width: 24px; height: 24px; }
+  .pl-corner--tl { top: 20px;    left: 20px; }
+  .pl-corner--tr { top: 20px;    right: 20px; }
+  .pl-corner--bl { bottom: 20px; left: 20px; }
+  .pl-corner--br { bottom: 20px; right: 20px; }
 }
