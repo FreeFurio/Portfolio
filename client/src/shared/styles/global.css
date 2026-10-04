@@ -153,6 +153,12 @@ code, pre {
   align-items: stretch;
 }
 
+@media (max-width: 768px) {
+  .slide--scrollable {
+    padding-top: 60px;
+  }
+}
+
 /* Mobile-only scrollable — desktop stays vertically centered */
 @media (max-width: 768px) {
   .slide--mobile-scrollable {
@@ -174,6 +180,12 @@ code, pre {
   width: 100%;
   overflow-y: auto;
   max-height: 100vh;
+}
+
+@media (max-width: 768px) {
+  .contact-slide {
+    padding-top: 60px;
+  }
 }
 
 /* Side dots navigation */

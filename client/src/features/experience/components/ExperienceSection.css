@@ -165,9 +165,9 @@
 /* ── Responsive ── */
 @media (max-width: 768px) {
   .experience-section {
-    padding: var(--space-4) var(--space-4);
-    height: 100%;
-    overflow-y: auto;
+    padding: var(--space-4) var(--space-4) var(--space-6);
+    height: auto;
+    overflow: visible;
     align-items: flex-start;
   }
   .experience-timeline { margin-top: var(--space-4); }

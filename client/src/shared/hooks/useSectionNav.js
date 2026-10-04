@@ -2,12 +2,33 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 
 const DEBOUNCE = 900;
 
+function isScrollable(el) {
+  return el.scrollHeight > el.clientHeight + 2;
+}
+
+function isAtBoundary(el, goingDown) {
+  if (!isScrollable(el)) return true;
+  if (goingDown) return el.scrollTop + el.clientHeight >= el.scrollHeight - 4;
+  return el.scrollTop <= 4;
+}
+
+function getScrollableParent(target) {
+  let el = target;
+  while (el && el !== document.body) {
+    if (isScrollable(el)) return el;
+    el = el.parentElement;
+  }
+  return null;
+}
+
 export function useSectionNav(total, containerRef) {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState('down');
   const indexRef = useRef(0);
   const lastTime = useRef(0);
   const touchStart = useRef(null);
+  const boundaryHits = useRef(0);
+  const lastBoundaryDir = useRef(null);
 
   const go = useCallback((next) => {
     const now = Date.now();
@@ -17,6 +38,8 @@ export function useSectionNav(total, containerRef) {
     const clamped = Math.max(0, Math.min(total - 1, nextVal));
     if (clamped === cur) return;
     lastTime.current = now;
+    boundaryHits.current = 0;
+    lastBoundaryDir.current = null;
     setDirection(nextVal > cur ? 'down' : 'up');
     indexRef.current = clamped;
     setIndex(clamped);
@@ -27,10 +50,30 @@ export function useSectionNav(total, containerRef) {
   const goTo = useCallback((i) => go(() => i), [go]);
 
   useEffect(() => {
-    // Wheel and keyboard stay on window — desktop only, no conflict
     function onWheel(e) {
-      if (e.deltaY > 30) goNext();
-      else if (e.deltaY < -30) goBack();
+      const goingDown = e.deltaY > 30;
+      const goingUp = e.deltaY < -30;
+      if (!goingDown && !goingUp) return;
+
+      const scrollable = getScrollableParent(e.target);
+      if (scrollable && isScrollable(scrollable)) {
+        if (!isAtBoundary(scrollable, goingDown)) {
+          // still scrolling inside — reset boundary counter
+          boundaryHits.current = 0;
+          return;
+        }
+        // at boundary — require one extra scroll
+        const dir = goingDown ? 'down' : 'up';
+        if (lastBoundaryDir.current !== dir) {
+          boundaryHits.current = 0;
+          lastBoundaryDir.current = dir;
+        }
+        boundaryHits.current += 1;
+        if (boundaryHits.current < 2) return;
+      }
+
+      if (goingDown) goNext();
+      else goBack();
     }
 
     function onKey(e) {
@@ -38,8 +81,6 @@ export function useSectionNav(total, containerRef) {
       if (e.key === 'ArrowUp' || e.key === 'PageUp') goBack();
     }
 
-    // Touch events attach to the container so scrollable children
-    // consume the event first and it never reaches here
     const container = containerRef?.current || window;
 
     function onTouchStart(e) {

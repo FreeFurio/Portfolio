@@ -1,18 +1,41 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import heroImg from '../../../assets/Hero.jpg';
 import photoImg from '../../../assets/Photo.jpg';
 import { useTyping } from '../hooks/useTyping.js';
 import './HeroSection.css';
 
 const NAME_LETTERS = ['R','e','e','o','n',' ','L','a','n','c','e',' ','T','o','b','i','a'];
+const PHOTOS = [photoImg, heroImg];
+
+const PHOTO_POSITIONS = ['center top', 'center top'];
 
 export default function HeroSection({ hero, onScrollDown }) {
   const typedTitle = useTyping();
-  const [flipped, setFlipped] = useState(false);
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActive((a) => (a + 1) % PHOTOS.length);
+    }, 10000);
+    return () => clearInterval(interval);
+  }, []);
+
+  function handleClick() {
+    setActive((a) => (a + 1) % PHOTOS.length);
+  }
 
   return (
     <section className="hero-section">
       <div className="hero-grid-bg" aria-hidden="true" />
+      <div className="hero-mobile-bg" aria-hidden="true">
+        {PHOTOS.map((src, i) => (
+          <div
+            key={i}
+            className={`hero-mobile-bg-layer${i === active ? ' hero-mobile-bg-layer--active' : ''}`}
+            style={{ backgroundImage: `url(${src})`, backgroundPosition: PHOTO_POSITIONS[i] }}
+          />
+        ))}
+      </div>
 
       <div className="hero-inner">
         <div className="hero-content">
@@ -65,16 +88,21 @@ export default function HeroSection({ hero, onScrollDown }) {
           </div>
         </div>
 
-        <div className="hero-photo" onClick={() => setFlipped((f) => !f)}>
-          <div className={`hero-photo-inner${flipped ? ' hero-photo-inner--flipped' : ''}`}>
-            <div className="hero-photo-face hero-photo-face--front">
-              <img src={photoImg} alt="Reeon Lance Tobia" className="hero-photo-img" />
-              <div className="hero-photo-scanlines" aria-hidden="true" />
-            </div>
-            <div className="hero-photo-face hero-photo-face--back">
-              <img src={heroImg} alt="Reeon Lance Tobia" className="hero-photo-img" />
-              <div className="hero-photo-scanlines" aria-hidden="true" />
-            </div>
+        <div className="hero-photo" onClick={handleClick}>
+          <div className="hero-photo-stack">
+            {PHOTOS.map((src, i) => {
+              const isActive = i === active;
+              const isBack = i !== active;
+              return (
+                <div
+                  key={i}
+                  className={`hero-photo-card${isActive ? ' hero-photo-card--active' : ''}${isBack ? ' hero-photo-card--back' : ''}`}
+                >
+                  <img src={src} alt="Reeon Lance Tobia" className="hero-photo-img" />
+                  <div className="hero-photo-scanlines" aria-hidden="true" />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
