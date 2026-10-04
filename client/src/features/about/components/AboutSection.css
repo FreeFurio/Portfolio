@@ -442,30 +442,42 @@
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .about-container {
-    grid-template-columns: 1fr;
-    gap: var(--space-6);
-  }
-  .about-photo-wrapper {
-    display: flex;
-    justify-content: center;
-    padding-right: 10px;
-    padding-bottom: 10px;
-  }
+  .about-section { padding: var(--space-8) var(--space-6); }
+  .about-container { grid-template-columns: 1fr; gap: var(--space-6); }
+  .about-photo-wrapper { display: flex; justify-content: center; padding-right: 12px; padding-bottom: 12px; }
+  .about-photo-inner { width: 200px; }
+  .about-photo { width: 200px; height: 230px; }
+  .about-photo-inner::after { width: 200px; height: 230px; }
+  .about-photo-holo { width: 200px; height: 230px; }
   .about-stats { flex-wrap: wrap; gap: var(--space-4); }
+  .about-stat-value { font-size: 2rem; }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .about-section { padding: var(--space-6) var(--space-4); }
   .about-photo-inner { width: 160px; }
-  .about-photo { width: 160px; height: 190px; }
-  .about-photo-inner::after { width: 160px; height: 190px; }
-  .about-photo-holo { width: 160px; height: 190px; }
-  .about-bio { font-size: 0.82rem; line-height: 1.6; }
+  .about-photo { width: 160px; height: 185px; }
+  .about-photo-inner::after { width: 160px; height: 185px; }
+  .about-photo-holo { width: 160px; height: 185px; }
+  .about-bio { font-size: 0.83rem; line-height: 1.65; }
   .about-what-i-do li { font-size: 0.78rem; }
   .about-tech-pill { font-size: 0.68rem; padding: 2px 8px; }
-  .about-stat-value { font-size: 1.6rem; }
+  .about-stat-value { font-size: 1.7rem; }
   .about-stat-label { font-size: 0.65rem; }
   .about-availability { font-size: 0.68rem; padding: 3px 10px; }
   .about-content { gap: var(--space-3); }
+}
+
+@media (max-width: 412px) {
+  .about-photo-inner { width: 140px; }
+  .about-photo { width: 140px; height: 165px; }
+  .about-photo-inner::after { width: 140px; height: 165px; }
+  .about-photo-holo { width: 140px; height: 165px; }
+  .about-stat-value { font-size: 1.5rem; }
+}
+
+@media (max-width: 360px) {
+  .about-section { padding: var(--space-4) var(--space-3); }
+  .about-bio { font-size: 0.78rem; }
+  .about-what-i-do li { font-size: 0.72rem; }
 }

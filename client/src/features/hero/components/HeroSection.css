@@ -527,14 +527,35 @@
   .hero-photo { display: none; }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  .hero-section { padding: 0 var(--space-6); }
+  .hero-inner { padding-top: 80px; gap: var(--space-3); }
+  .hero-name { font-size: clamp(2rem, 9vw, 3rem); letter-spacing: -1px; }
+  .hero-title { font-size: clamp(1.1rem, 5vw, 1.6rem); margin-bottom: var(--space-3); }
+  .hero-tagline { font-size: 0.9rem; margin-bottom: var(--space-5); line-height: 1.7; }
+  .hero-cta { gap: var(--space-3); margin-bottom: var(--space-4); }
+}
+
+@media (max-width: 480px) {
   .hero-section { padding: 0 var(--space-4); }
-  .hero-inner { padding-top: 60px; gap: var(--space-4); }
-  .hero-name { font-size: clamp(1.8rem, 8vw, 2.6rem); letter-spacing: -1px; }
-  .hero-title { font-size: clamp(1rem, 4.5vw, 1.4rem); margin-bottom: var(--space-3); }
-  .hero-location { font-size: 0.7rem; margin-bottom: var(--space-2); }
-  .hero-tagline { font-size: 0.85rem; margin-bottom: var(--space-4); line-height: 1.6; }
-  .hero-cta { flex-direction: column; gap: var(--space-2); margin-bottom: var(--space-4); }
-  .btn { text-align: center; justify-content: center; width: 100%; padding: 11px 20px; font-size: 0.8rem; }
-  .hero-scroll-indicator { bottom: var(--space-4); }
+  .hero-inner { padding-top: 70px; }
+  .hero-name { font-size: clamp(1.7rem, 8vw, 2.4rem); letter-spacing: -0.5px; }
+  .hero-title { font-size: clamp(0.95rem, 4.5vw, 1.3rem); }
+  .hero-greeting { font-size: 0.82rem; }
+  .hero-location { font-size: 0.7rem; }
+  .hero-tagline { font-size: 0.82rem; line-height: 1.6; }
+  .hero-cta { flex-direction: column; gap: var(--space-2); }
+  .btn { width: 100%; justify-content: center; padding: 11px 20px; font-size: 0.78rem; }
+  .hero-scroll-indicator { bottom: var(--space-3); }
+}
+
+@media (max-width: 412px) {
+  .hero-name { font-size: clamp(1.6rem, 7.5vw, 2.2rem); }
+  .hero-inner { padding-top: 65px; }
+}
+
+@media (max-width: 360px) {
+  .hero-name { font-size: 1.5rem; }
+  .hero-title { font-size: 0.9rem; }
+  .hero-tagline { font-size: 0.78rem; }
 }

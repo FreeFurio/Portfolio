@@ -405,17 +405,39 @@
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .projects-section { padding: 60px var(--space-4) var(--space-4); }
-  .projects-carousel { height: 300px; }
-  .carousel-card { width: calc(100vw - 32px); height: 260px; }
+  .projects-section { padding: 70px var(--space-4) var(--space-4); }
+  .projects-carousel { height: 320px; }
+  .carousel-card { width: calc(100vw - 32px); height: 280px; }
   .carousel-card-inner { grid-template-columns: 1fr; }
   .carousel-card-image { display: none; }
-  .carousel-card--prev { transform: translateX(-75vw) scale(0.88); }
-  .carousel-card--next { transform: translateX(75vw) scale(0.88); }
-  .carousel-card-content { padding: var(--space-4); gap: var(--space-2); }
-  .carousel-card-title { font-size: 1.1rem; }
-  .carousel-card-desc { font-size: 0.8rem; -webkit-line-clamp: 2; }
-  .carousel-tech-pill { font-size: 0.7rem; padding: 2px 8px; }
+  .carousel-card--prev { transform: translateX(-78vw) scale(0.88); }
+  .carousel-card--next { transform: translateX(78vw) scale(0.88); }
+  .carousel-card-content { padding: var(--space-5); gap: var(--space-3); }
+  .carousel-card-title { font-size: 1.2rem; }
+  .carousel-card-desc { font-size: 0.82rem; -webkit-line-clamp: 2; }
+  .carousel-tech-pill { font-size: 0.72rem; padding: 3px 8px; }
   .carousel-btn { width: 36px; height: 36px; font-size: 0.85rem; }
   .projects-header { margin-bottom: var(--space-4); }
+  .carousel-controls { margin-top: var(--space-4); gap: var(--space-4); }
+}
+
+@media (max-width: 480px) {
+  .projects-carousel { height: 290px; }
+  .carousel-card { height: 255px; }
+  .carousel-card-content { padding: var(--space-4); }
+  .carousel-card-title { font-size: 1.05rem; }
+  .carousel-card-desc { font-size: 0.78rem; }
+  .carousel-folder-tab { font-size: 0.62rem; padding: 4px 14px 6px; top: -27px; }
+}
+
+@media (max-width: 412px) {
+  .projects-carousel { height: 270px; }
+  .carousel-card { height: 240px; width: calc(100vw - 24px); }
+}
+
+@media (max-width: 360px) {
+  .projects-section { padding: 65px var(--space-3) var(--space-3); }
+  .projects-carousel { height: 250px; }
+  .carousel-card { height: 220px; }
+  .carousel-card-title { font-size: 0.95rem; }
 }
