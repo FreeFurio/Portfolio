@@ -448,9 +448,9 @@
   .about-section {
     padding: var(--space-4) var(--space-4);
     height: 100%;
-    overflow-y: auto;
+    overflow: hidden;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
   }
 
   /* Hide desktop layout, show mobile layout */

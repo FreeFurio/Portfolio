@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import HeroSection from '../../hero/components/HeroSection.jsx';
 import AboutSection from '../../about/components/AboutSection.jsx';
 import ProjectsSection from '../../projects/components/ProjectsSection.jsx';
@@ -32,7 +32,8 @@ export default function HomePage() {
 
   const allLoaded = !heroLoading && !aboutLoading && !projectsLoading && !skillsLoading;
 
-  const { index, direction, goTo } = useSectionNav(SECTION_IDS.length);
+  const containerRef = useRef(null);
+  const { index, direction, goTo } = useSectionNav(SECTION_IDS.length, containerRef);
 
   useEffect(() => {
     if (!allLoaded) return;
@@ -68,11 +69,11 @@ export default function HomePage() {
       {allLoaded && (
         <>
           <Navbar activeId={SECTION_IDS[index]} onNavClick={goTo} sectionIds={SECTION_IDS} />
-          <main className="slides-container">
+          <main className="slides-container" ref={containerRef}>
             {sections.map((section, i) => {
               let state = 'hidden';
               if (i === index) state = 'active';
-              const scrollable = i === 1 || i === 4; // about (mobile), experience
+              const scrollable = i === 1 || i === 4 || i === 5; // about, experience, contact
               return (
                 <div
                   key={i}

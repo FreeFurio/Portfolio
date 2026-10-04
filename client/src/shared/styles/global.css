@@ -145,7 +145,7 @@ code, pre {
   z-index: 1;
 }
 
-/* Scrollable slide — content taller than viewport scrolls internally */
+/* Scrollable slide — content scrolls internally, section nav unaffected */
 .slide--scrollable {
   overflow-y: auto;
   overflow-x: hidden;
