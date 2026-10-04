@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import photoImg from '../../../assets/Photo.jpg';
 import './AboutSection.css';
 
 const DEFAULT_STATS = [
@@ -61,11 +62,7 @@ export default function AboutSection({ about }) {
 
   const photo = (
     <div className="about-photo">
-      {about.photoUrl ? (
-        <img src={about.photoUrl} alt="Reeon Lance Tobia" />
-      ) : (
-        <div className="about-photo-placeholder"><span>RLT</span></div>
-      )}
+      <img src={about.photoUrl || photoImg} alt="Reeon Lance Tobia" />
     </div>
   );
 

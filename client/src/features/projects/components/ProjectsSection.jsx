@@ -1,5 +1,19 @@
 import { useState, useRef, useCallback } from 'react';
 import './ProjectsSection.css';
+import aiPoweredImg from '../../../assets/AIPOWEREDIMG.jpg';
+import docTrackImg from '../../../assets/DocTrackIMG.jpg';
+
+const PROJECT_IMAGES = {
+  'ai-powered': aiPoweredImg,
+  'doctrack': docTrackImg,
+};
+
+function getProjectImage(title) {
+  const key = title.toLowerCase();
+  if (key.includes('ai') || key.includes('digital marketing')) return PROJECT_IMAGES['ai-powered'];
+  if (key.includes('doc')) return PROJECT_IMAGES['doctrack'];
+  return null;
+}
 
 function GitHubIcon() {
   return (
@@ -57,7 +71,12 @@ function CarouselCard({ project, state, onClick }) {
       )}
       <div className="carousel-card-inner">
         <div className="carousel-card-image">
-          <span>{project.title.charAt(0)}</span>
+          {(() => {
+            const img = getProjectImage(project.title);
+            return img
+              ? <img src={img} alt={project.title} className="carousel-card-img" />
+              : <span>{project.title.charAt(0)}</span>;
+          })()}
         </div>
         <div className="carousel-card-content">
           <h3 className="carousel-card-title">{project.title}</h3>
