@@ -6,7 +6,7 @@ import '../../about/components/AboutSection.css';
 import './EditModal.css';
 
 const DEFAULT_STATS = [
-  { value: '1+', label: 'Years Experience' },
+  { value: '1+', label: 'Yrs of Programming' },
   { value: '3+', label: 'Projects Built' },
   { value: '10+', label: 'Technologies' },
 ];

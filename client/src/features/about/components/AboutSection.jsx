@@ -3,7 +3,7 @@ import photoImg from '../../../assets/Photo2.jpg';
 import './AboutSection.css';
 
 const DEFAULT_STATS = [
-  { value: 1, suffix: '+', label: 'Years Experience' },
+  { value: 1, suffix: '+', label: 'Yrs of Programming' },
   { value: 3, suffix: '+', label: 'Projects Built' },
   { value: 10, suffix: '+', label: 'Technologies' },
 ];
