@@ -350,14 +350,14 @@
 
 .hero-photo-stack {
   position: relative;
-  width: 264px;
-  height: 444px;
+  width: clamp(200px, 22vw, 264px);
+  height: clamp(340px, 37vw, 444px);
 }
 
 .hero-photo-card {
   position: absolute;
-  width: 240px;
-  height: 420px;
+  width: clamp(180px, 20vw, 240px);
+  height: clamp(320px, 34vw, 420px);
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid rgba(100,255,218,0.2);
