@@ -178,18 +178,19 @@
 
 .pl-name-type {
   font-family: var(--font-mono);
-  font-size: clamp(0.6rem, 1.8vw, 0.8rem);
-  letter-spacing: 0.25em;
+  font-size: clamp(0.55rem, 3.5vw, 0.8rem);
+  letter-spacing: clamp(0.08em, 1vw, 0.25em);
   color: var(--color-text-primary);
   overflow: hidden;
   white-space: nowrap;
   width: 0;
+  max-width: 90vw;
   animation: typeReveal 700ms steps(18, end) 1250ms forwards;
 }
 
 @keyframes typeReveal {
   from { width: 0; }
-  to   { width: 18ch; }
+  to   { width: min(18ch, 90vw); }
 }
 
 .pl-role-fade {

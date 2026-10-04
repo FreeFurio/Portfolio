@@ -405,7 +405,7 @@
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .projects-section { padding: 65px var(--space-4) var(--space-3); }
+  .projects-section { padding: 20px var(--space-4) var(--space-3); }
   .projects-header { margin-bottom: var(--space-3); }
   .projects-carousel { height: 340px; }
   .carousel-card { width: calc(100vw - 32px); height: 300px; }
@@ -423,7 +423,7 @@
 }
 
 @media (max-width: 480px) {
-  .projects-section { padding: 62px var(--space-3) var(--space-2); }
+  .projects-section { padding: 16px var(--space-3) var(--space-2); }
   .projects-carousel { height: 310px; }
   .carousel-card { height: 275px; width: calc(100vw - 24px); }
   .carousel-card-title { font-size: 0.9rem; }

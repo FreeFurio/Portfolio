@@ -466,21 +466,35 @@
 }
 
 @media (max-width: 480px) {
-  .about-container { grid-template-columns: 1fr 1.6fr; gap: var(--space-3); }
-  .about-photo-inner { width: 100px; }
-  .about-photo { width: 100px; height: 118px; }
-  .about-photo-inner::after { width: 100px; height: 118px; }
-  .about-photo-holo { width: 100px; height: 118px; }
-  .about-bio { font-size: 0.7rem; }
-  .about-what-i-do li { font-size: 0.68rem; }
-  .about-tech-pill { font-size: 0.58rem; padding: 1px 5px; }
-  .about-stat-value { font-size: 1.2rem; }
+  .about-section { padding: var(--space-3) var(--space-3); }
+  .about-container {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    align-items: center;
+  }
+  .about-photo-wrapper {
+    display: flex;
+    justify-content: center;
+    padding-right: 0;
+    padding-bottom: 0;
+  }
+  .about-photo-inner { width: 140px; }
+  .about-photo { width: 140px; height: 165px; }
+  .about-photo-inner::after { width: 140px; height: 165px; }
+  .about-photo-holo { width: 140px; height: 165px; }
+  .about-bio { font-size: 0.82rem; line-height: 1.6; }
+  .about-what-i-do li { font-size: 0.78rem; }
+  .about-tech-pill { font-size: 0.65rem; padding: 2px 8px; }
+  .about-stat-value { font-size: 1.4rem; }
+  .about-stats { gap: var(--space-6); }
 }
 
 @media (max-width: 360px) {
   .about-section { padding: var(--space-3) var(--space-3); }
   .about-container { grid-template-columns: 1fr; gap: var(--space-3); }
   .about-photo-wrapper { display: flex; justify-content: center; }
-  .about-photo-inner { width: 100px; }
-  .about-photo { width: 100px; height: 118px; }
+  .about-photo-inner { width: 120px; }
+  .about-photo { width: 120px; height: 140px; }
+  .about-photo-inner::after { width: 120px; height: 140px; }
+  .about-photo-holo { width: 120px; height: 140px; }
 }
